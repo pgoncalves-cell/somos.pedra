@@ -1,0 +1,15 @@
+{
+  "name": "lidere-ecossistema-avaliacoes",
+  "version": "0.15.0",
+  "private": true,
+  "description": "Protótipo estático do ecossistema LIDERE/Pedra para avaliações.",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve .",
+    "deploy:vercel": "vercel --prod"
+  },
+  "devDependencies": {
+    "serve": "latest",
+    "vercel": "latest"
+  }
+}
