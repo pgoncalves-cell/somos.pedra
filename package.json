@@ -1,15 +1,13 @@
 {
-  "name": "lidere-visao-usuario-atividades-realizadas",
-  "version": "0.32.0",
+  "name": "somos-pedra-lidere-eci-github-pages",
+  "version": "0.39.1",
   "private": true,
-  "description": "Protótipo estático do ecossistema LIDERE/Pedra para avaliações.",
+  "description": "Projeto estático Somos Pedra, LIDERE e ECI pronto para GitHub Pages.",
   "scripts": {
     "start": "npx serve .",
-    "dev": "npx serve .",
-    "deploy:vercel": "vercel --prod"
+    "dev": "npx serve ."
   },
   "devDependencies": {
-    "serve": "latest",
-    "vercel": "latest"
+    "serve": "latest"
   }
 }

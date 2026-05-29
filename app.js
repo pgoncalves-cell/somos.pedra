@@ -1,5 +1,5 @@
 
-const STORAGE_KEY = "lidere_ecossistema_git_v32";
+const STORAGE_KEY = "lidere_ecossistema_git_v38";
 
 const profileLabels = {
   analitico: "Analítico",
@@ -306,7 +306,7 @@ function renderPublicHome() {
 
       <section class="portal-card">
         <div class="portal-top">
-          <img class="portal-pedra-logo" src="assets/logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
+          <img class="portal-pedra-logo" src="logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
           <span class="portal-tag">Portal institucional</span>
         </div>
 
@@ -318,8 +318,8 @@ function renderPublicHome() {
         <div class="portal-options">
           <button class="portal-option" onclick="goLogin()">
             <div class="portal-option-logo lidere-option-logo">
-              <img class="lidere-card-logo" src="assets/lidere.png" alt="LIDERE">
-              <img src="assets/logo.png" alt="Símbolo Pedra">
+              <img class="lidere-card-logo" src="lidere.png" alt="LIDERE">
+              <img src="logo.png" alt="Símbolo Pedra">
             </div>
             <div>
               <h2>LIDERE</h2>
@@ -342,7 +342,7 @@ function renderPublicHome() {
 
           <button class="portal-option somos-pedra" onclick="goPublicHome()">
             <div class="portal-option-logo">
-              <img class="somos-pedra-logo" src="assets/logo_preto.png" alt="Somos Pedra">
+              <img class="somos-pedra-logo" src="logo_preto.png" alt="Somos Pedra">
             </div>
             <div>
               <h2>Somos Pedra</h2>
@@ -367,7 +367,7 @@ function renderEciComingSoon() {
       <section class="eci-card">
         <div class="eci-header">
           <button class="btn secondary" onclick="goPublicHome()">← Somos Pedra</button>
-          <img class="eci-pedra-logo" src="assets/logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
+          <img class="eci-pedra-logo" src="logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
         </div>
 
         <div class="eci-content">
@@ -412,7 +412,7 @@ function renderLogin() {
       <section class="login-brand ready-screen">
         <div class="login-brand-content">
           <div class="login-brand-top">
-            <img class="login-lidere-logo" src="assets/lidere.png" alt="LIDERE">
+            <img class="login-lidere-logo" src="lidere.png" alt="LIDERE">
           </div>
 
           <div class="login-brand-copy">
@@ -421,7 +421,7 @@ function renderLogin() {
           </div>
 
           <div class="login-brand-bottom">
-            <img class="login-pedra-logo-bottom" src="assets/logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
+            <img class="login-pedra-logo-bottom" src="logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
           </div>
         </div>
       </section>
@@ -443,7 +443,7 @@ function renderLogin() {
             `).join("")}
           </div>
           <div class="login-mobile-footer-logo">
-            <img src="assets/logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
+            <img src="logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
           </div>
         </div>
       </section>
@@ -458,44 +458,63 @@ function layout(title, subtitle, content) {
         ["minhas","Minhas atividades"],
         ["realizadas","Atividades realizadas"]
       ]
-    : [
-        ["dashboard","Dashboard"],
-        ["usuarios","Usuários"],
-        ["avaliacoes","Atividades"],
-        ["controle","Controle Geral"],
-        ["resultados","Histórico"],
-        ["logs","Logs"],
-        ["config","Configurações"]
-      ].filter(([key]) => {
-        if (["avaliacoes","controle"].includes(key)) return canManage();
-        if (["logs","config"].includes(key)) return isAdm();
-        if (["usuarios","resultados"].includes(key)) return canManage() || u.tipo === "LIDER";
-        return true;
-      });
+    : (u.perfil === "GERENCIA")
+      ? [
+          ["dashboard","Dashboard"],
+          ["usuarios","Usuários"],
+          ["resultados","Atividades realizadas"],
+          ["controle","Controle de atividades"]
+        ]
+      : [
+          ["dashboard","Dashboard"],
+          ["usuarios","Usuários"],
+          ["avaliacoes","Atividades"],
+          ["controle","Controle Geral"],
+          ["resultados","Histórico"],
+          ["logs","Logs"],
+          ["config","Configurações"]
+        ].filter(([key]) => {
+          if (["avaliacoes","controle"].includes(key)) return canManage();
+          if (["logs","config"].includes(key)) return isAdm();
+          if (["usuarios","resultados"].includes(key)) return canManage() || u.tipo === "LIDER";
+          return true;
+        });
+
+  const isStandardUser = u.perfil === "USUARIO";
 
   document.getElementById("app").innerHTML = `
-    <div class="layout">
-      <aside class="sidebar">
-        <div class="brand-row"><div class="brand-lidere">LIDERE</div></div>
-        <div class="profile">
-          <b>${u.nome}</b>
-          <small>${u.perfil} ${u.tipo ? "• " + u.tipo : ""}</small><br>
-          <small>${u.perfil} • ${u.tipo}</small>
+    <div class="layout ${isStandardUser ? "user-standard-layout" : ""}">
+      <aside class="sidebar ${isStandardUser ? "user-standard-sidebar" : ""}">
+        <div class="brand-row ${isStandardUser ? "user-brand-row" : "all-brand-row"}">
+          <img class="sidebar-lidere-logo ${isStandardUser ? "user-lidere-logo" : "admin-lidere-logo"}" src="lidere.png" alt="LIDERE">
         </div>
-        <nav class="nav">
+
+        <div class="profile ${isStandardUser ? "user-standard-profile" : ""}">
+          <b>${u.nome}</b>
+          ${isStandardUser
+            ? `<small>Acesso padrão</small>`
+            : `<small>${u.perfil}${u.tipo ? " • " + u.tipo : ""}</small>`}
+        </div>
+
+        <nav class="nav ${isStandardUser ? "user-standard-nav" : ""}">
           ${nav.map(([key,label]) => `<button class="${state.page===key?'active':''}" onclick="setPage('${key}')">${label}</button>`).join("")}
         </nav>
+
         <div class="sidebar-logo-footer">
-          <img src="assets/logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
+          <img src="logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
         </div>
-        <button class="btn secondary" onclick="logout()">Sair</button>
+
+        <button class="btn secondary ${isStandardUser ? "user-logout-btn" : ""}" onclick="logout()">Sair</button>
       </aside>
-      <main class="main">
-        <div class="topbar">
+
+      <main class="main ${isStandardUser ? "user-standard-main" : ""}">
+        <div class="topbar ${isStandardUser ? "user-standard-topbar" : ""}">
           <div><h1>${title}</h1>${subtitle ? `<p class="muted">${subtitle}</p>` : ""}</div>
-          <span class="badge ${statusBadge(u.perfil)}">${u.perfil}</span>
+          ${isStandardUser ? "" : `<span class="badge ${statusBadge(u.perfil)}">${u.perfil}</span>`}
         </div>
-        ${content}
+        <div class="${isStandardUser ? "user-content-wrap" : ""}">
+          ${content}
+        </div>
       </main>
     </div>
   `;
@@ -713,49 +732,73 @@ function renderLiderDashboard() {
   layout("Dashboard", "Visão do líder.", content);
 }
 
+
 function renderGerenciaDashboard() {
   const users = visibleUsers().filter(u => u.perfil === "USUARIO");
   const assessments = visibleAssessments();
   const active = assessments.filter(a => a.status === "Ativa").length;
+  const draft = assessments.filter(a => a.status === "Rascunho").length;
+  const closed = assessments.filter(a => a.status === "Encerrada").length;
+  const answered = state.assignments.filter(a => users.some(u => u.id === a.userId) && a.status === "Concluída").length;
   const pending = state.assignments.filter(a => users.some(u => u.id === a.userId) && a.status === "Pendente").length;
-  const done = state.assignments.filter(a => users.some(u => u.id === a.userId) && a.status === "Concluída").length;
+
+  const recent = assessments.slice().sort((a,b) => String(b.startsAt || "").localeCompare(String(a.startsAt || ""))).slice(0, 5);
 
   const content = `
     <div class="grid cols-4" style="margin-bottom:18px">
-      <div class="stat card"><span>Usuários</span><strong>${users.length}</strong></div>
-      <div class="stat card"><span>Atividades ativas</span><strong>${active}</strong></div>
-      <div class="stat card"><span>Pendentes</span><strong>${pending}</strong></div>
-      <div class="stat card"><span>Respondidas</span><strong>${done}</strong></div>
+      <div class="stat card"><span>Usuários comuns</span><strong>${users.length}</strong></div>
+      <div class="stat card"><span>Ativas</span><strong>${active}</strong></div>
+      <div class="stat card"><span>Em rascunho</span><strong>${draft}</strong></div>
+      <div class="stat card"><span>Encerradas</span><strong>${closed}</strong></div>
+    </div>
+
+    <div class="grid cols-3" style="margin-bottom:18px">
+      <div class="stat card"><span>Respostas concluídas</span><strong>${answered}</strong></div>
+      <div class="stat card"><span>Respostas pendentes</span><strong>${pending}</strong></div>
+      <div class="stat card"><span>Atividades cadastradas</span><strong>${assessments.length}</strong></div>
     </div>
 
     <section class="section card">
       <div class="section-head">
         <div>
-          <h3>Escopo geral da gerência</h3>
-          <p class="muted">Criação de usuários, atividades e acompanhamento geral.</p>
+          <h3>Painel da gerência</h3>
+          <p class="muted">Acompanhe os usuários comuns, o histórico das atividades realizadas e o controle completo das atividades.</p>
         </div>
       </div>
       <div class="organic-grid">
-        <button class="organic-action" onclick="setPage('usuarios')"><b>Usuários</b><span>Criar e editar usuários</span></button>
-        <button class="organic-action" onclick="setPage('avaliacoes')"><b>Atividades</b><span>Criar avaliações e editar perguntas</span></button>
-        <button class="organic-action" onclick="setPage('controle')"><b>Controle Geral</b><span>Acompanhar respostas e pendências</span></button>
+        <button class="organic-action" onclick="setPage('usuarios')"><b>Usuários</b><span>Listar e gerenciar apenas usuários comuns</span></button>
+        <button class="organic-action" onclick="setPage('resultados')"><b>Atividades realizadas</b><span>Ver o histórico do que já foi respondido</span></button>
+        <button class="organic-action" onclick="setPage('controle')"><b>Controle de atividades</b><span>Criar, editar perguntas, validar usuários e encerrar atividades</span></button>
       </div>
     </section>
 
     <br>
 
     <section class="section card">
-      <div class="section-head"><div><h3>Atividades ativas</h3><p class="muted">Quem possui atividades e situação de resposta.</p></div><button class="btn secondary" onclick="setPage('controle')">Controle completo</button></div>
+      <div class="section-head">
+        <div><h3>Resumo rápido das atividades</h3><p class="muted">Situação geral das atividades mais recentes.</p></div>
+        <button class="btn secondary" onclick="setPage('controle')">Abrir controle de atividades</button>
+      </div>
       <table class="table">
-        <thead><tr><th>Atividade</th><th>Status</th><th>Enviadas</th><th>Respondidas</th><th>Pendentes</th></tr></thead>
+        <thead><tr><th>Atividade</th><th>Status</th><th>Perguntas</th><th>Respondidas</th><th>Pendentes</th></tr></thead>
         <tbody>
-          ${assessments.filter(a => a.status === "Ativa").map(a => { const s = assessmentStats(a.id); return `<tr><td><b>${a.titulo}</b></td><td><span class="badge success">Ativa</span></td><td>${s.total}</td><td>${s.answered}</td><td>${s.pending}</td></tr>`; }).join("") || `<tr><td colspan="5">Nenhuma atividade ativa.</td></tr>`}
+          ${recent.map(a => {
+            const s = assessmentStats(a.id);
+            return `<tr>
+              <td><b>${a.titulo}</b><br><small>${a.descricao || "-"}</small></td>
+              <td><span class="badge ${statusBadge(a.status)}">${a.status}</span></td>
+              <td>${a.questions.length}</td>
+              <td>${s.answered}</td>
+              <td>${s.pending}</td>
+            </tr>`;
+          }).join("") || `<tr><td colspan="5">Nenhuma atividade cadastrada.</td></tr>`}
         </tbody>
       </table>
     </section>
   `;
-  layout("Dashboard", "Visão da gerência.", content);
+  layout("Dashboard", "Visão geral da gerência.", content);
 }
+
 
 function renderAdmDashboard() {
   const content = `
@@ -791,7 +834,7 @@ function renderAssessmentCard(a) {
       <div class="assessment-hero">
         <div class="brand-lidere">LIDERE</div>
         <div class="hero-brand-right">
-          <img src="assets/logo.png" alt="Símbolo Pedra">
+          <img src="logo.png" alt="Símbolo Pedra">
           <span class="badge ${statusBadge(a.status)}">${a.status}</span>
         </div>
       </div>
@@ -970,8 +1013,44 @@ function openUserAssessmentsModal(userId) {
   `);
 }
 
+
 function renderUsuarios() {
   if (!canManage() && currentUser().tipo === "LIDER") return renderLideradosUsuarios();
+
+  if (isGerencia()) {
+    const users = visibleUsers().filter(u => u.perfil === "USUARIO");
+    const content = `
+      <section class="section card">
+        <div class="section-head">
+          <div><h3>Usuários</h3><p class="muted">Nesta visão aparecem apenas os usuários comuns cadastrados no sistema.</p></div>
+          <button class="btn gold" onclick="openUserModal()">Novo usuário</button>
+        </div>
+        <table class="table user-table">
+          <thead><tr><th>Nome</th><th>CPF</th><th>Atividades</th><th>Realizadas</th><th>Status</th><th>Ações</th></tr></thead>
+          <tbody>
+            ${users.map(u => `
+              <tr>
+                <td><b>${u.nome}</b></td>
+                <td>${maskCpf(u.cpf)}</td>
+                <td>
+                  <div class="cell-with-action">
+                    <small>${userAssessmentNames(u.id)}</small>
+                    <button class="inline-view-btn" onclick="openUserAssessmentsModal(${u.id})">Ver</button>
+                  </div>
+                </td>
+                <td><span class="badge success">${userDoneAssignments(u.id).length}</span></td>
+                <td><button class="status-toggle ${u.status === "Ativo" ? "on" : "off"}" onclick="toggleUserStatus(${u.id})">${u.status}</button></td>
+                <td class="actions">
+                  <button class="btn small secondary" onclick="openUserModal(${u.id})">Editar</button>
+                  <button class="btn small outline" onclick="resetUserPassword(${u.id})">Trocar senha</button>
+                </td>
+              </tr>
+            `).join("") || `<tr><td colspan="6">Nenhum usuário comum encontrado.</td></tr>`}
+          </tbody>
+        </table>
+      </section>`;
+    return layout("Usuários", "Lista simplificada com apenas usuários comuns.", content);
+  }
 
   const users = visibleUsers();
   const content = `
@@ -1004,6 +1083,7 @@ function renderUsuarios() {
   layout("Usuários", "Cadastro, vínculos, avaliações e acesso.", content);
 }
 
+
 function renderLideradosUsuarios() {
   const subs = leaderSubordinates(currentUser().id);
   const content = `
@@ -1024,6 +1104,50 @@ function renderLideradosUsuarios() {
 
 function openUserModal(id=null) {
   if (!canManage()) return alert("Sem permissão.");
+  if (isGerencia()) {
+    const u = id ? state.users.find(x=>x.id===id) : null;
+    const isEdit = !!u;
+    const pwd = randomPassword();
+    const assignedAssessmentIds = id ? state.assignments.filter(a => a.userId === id).map(a => a.assessmentId) : [];
+    document.body.insertAdjacentHTML("beforeend", `
+      <div class="modal-backdrop" id="modal"><div class="modal">
+        <div class="modal-head">
+          <div>
+            <h3>${isEdit?"Editar usuário":"Novo usuário"}</h3>
+            <p class="muted">Cadastro simplificado da gerência para usuários comuns.</p>
+          </div>
+          <button class="close" onclick="closeModal()">×</button>
+        </div>
+        <form onsubmit="event.preventDefault(); saveUser(${id || "null"}, '${pwd}')">
+          <div class="form-row">
+            <div class="form-group"><label>Nome</label><input id="userNome" value="${u?.nome || ""}" required></div>
+            <div class="form-group"><label>CPF</label><input id="userCpf" value="${u?.cpf || ""}" required></div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group"><label>Status de acesso</label><select id="userStatus">
+              <option ${u?.status==="Ativo"?"selected":""}>Ativo</option>
+              <option ${u?.status==="Inativo"?"selected":""}>Inativo</option>
+            </select></div>
+            <div class="form-group"><label>Senha ${isEdit?"atual":"temporária"}</label><input id="userSenha" value="${isEdit ? u.senha : pwd}"></div>
+          </div>
+
+          <input type="hidden" id="userPerfil" value="USUARIO">
+          <input type="hidden" id="userTipo" value="ADMINISTRATIVO">
+
+          <h3>Atividades vinculadas</h3>
+          <div class="grid user-assessment-checks">
+            ${visibleAssessments().map(a => `<label class="permission-box"><input type="checkbox" class="userAssessmentCheck" value="${a.id}" ${assignedAssessmentIds.includes(a.id)?"checked":""} style="width:auto;margin-right:8px"> ${a.titulo}</label>`).join("")}
+          </div>
+
+          <br>
+          <button class="btn gold">${isEdit?"Salvar usuário":"Criar usuário"}</button>
+        </form>
+      </div></div>
+    `);
+    return;
+  }
+
   const u = id ? state.users.find(x=>x.id===id) : null;
   const isEdit = !!u;
   const pwd = randomPassword();
@@ -1103,12 +1227,12 @@ function syncUserType() {
   }
 }
 
+
 function saveUser(id, pwd) {
   const perfil = document.getElementById("userPerfil").value;
   const tipoValue = document.getElementById("userTipo").value;
   if (!isAdm() && perfil !== "USUARIO") return alert("Gerência só pode criar usuários respondentes.");
 
-  const classId = null;
   const data = {
     nome: document.getElementById("userNome").value.trim(),
     cpf: cleanCpf(document.getElementById("userCpf").value),
@@ -1135,14 +1259,16 @@ function saveUser(id, pwd) {
     log(`Usuário criado: ${data.nome}`);
   }
 
-  // Atualiza vínculo de liderança
-  state.relationships = state.relationships.filter(r => r.subordinateId !== userId && r.leaderId !== userId);
-  if (data.tipo === "LIDERADO") {
-    const leaderId = Number(document.getElementById("userLeader").value) || null;
-    if (leaderId) state.relationships.push({ id: nowId(), leaderId, subordinateId: userId });
+  if (!isGerencia()) {
+    state.relationships = state.relationships.filter(r => r.subordinateId !== userId && r.leaderId !== userId);
+    if (data.tipo === "LIDERADO") {
+      const leaderId = Number(document.getElementById("userLeader").value) || null;
+      if (leaderId) state.relationships.push({ id: nowId(), leaderId, subordinateId: userId });
+    }
+  } else {
+    state.relationships = state.relationships.filter(r => r.subordinateId !== userId && r.leaderId !== userId);
   }
 
-  // Atualiza avaliações vinculadas
   const selectedAssessments = [...document.querySelectorAll(".userAssessmentCheck:checked")].map(x => Number(x.value));
   state.assignments = state.assignments.filter(a => a.userId !== userId || a.status === "Concluída" || selectedAssessments.includes(a.assessmentId));
   selectedAssessments.forEach(assessmentId => {
@@ -1220,86 +1346,208 @@ function renderAssessmentAdminSections(list) {
     ${closed.length ? `<div class="assessment-grid">${closed.map(renderAssessmentAdminCard).join("")}</div>` : `<div class="empty"><b>Nenhuma encerrada.</b></div>`}
   `;
 }
+
 function renderAssessmentAdminCard(a) {
   const stats = assessmentStats(a.id);
+  const endedLabel = a.endsAt ? formatDateBR(a.endsAt) : "-";
+  const answeredLabel = `${stats.answered} respondeu(ram)`;
+  const pendingLabel = `${stats.pending} pendente(s)`;
   return `
-    <div class="assessment-card">
-      <div class="assessment-hero">
-        <div class="brand-lidere">LIDERE</div>
-        <div class="hero-brand-right">
-          <img src="assets/logo.png" alt="Símbolo Pedra">
-          <span class="badge ${statusBadge(a.status)}">${a.status}</span>
-        </div>
-      </div>
+    <div class="assessment-card organic-assessment-card">
       <div class="assessment-content">
-        <h3>${a.titulo}</h3>
-        <p class="muted">${a.descricao || ""}</p>
-        <div class="meta-pills"><span>${a.questions.length} pergunta(s)</span><span>${a.area}</span><span>${modeLabel(a.modeDefault)}</span><span>${formatDateBR(a.endsAt)}</span></div>
-        <div class="progress-row"><div class="track"><div class="fill" style="width:${stats.percent}%"></div></div><span>${stats.percent}%</span></div>
-        <div class="meta-pills"><span>${stats.total} enviados</span><span>${stats.answered} respondidos</span><span>${stats.pending} pendentes</span></div>
-        <div class="actions">
+        <div class="assessment-topline">
+          <span class="badge ${statusBadge(a.status)}">${a.status}</span>
+          <img class="assessment-symbol" src="logo.png" alt="Símbolo Pedra">
+        </div>
+
+        <div class="assessment-title-block">
+          <h3>${a.titulo}</h3>
+          ${a.descricao ? `<p class="muted">${a.descricao}</p>` : ``}
+        </div>
+
+        <div class="assessment-summary">
+          <span>${a.questions.length} pergunta(s)</span>
+          <span>Encerra em ${endedLabel}</span>
+        </div>
+
+        <div class="assessment-mini-status">
+          <span>${answeredLabel}</span>
+          <span>${pendingLabel}</span>
+        </div>
+
+        <div class="actions organic-actions">
           <button class="btn small secondary" onclick="previewAssessment(${a.id})">Prévia</button>
-          <button class="btn small secondary" onclick="openAssessmentModal(${a.id})">Editar</button>
-          <button class="btn small secondary" onclick="openQuestionBuilder(${a.id})">Perguntas</button>
-          <button class="btn small secondary" onclick="openAssignModal(${a.id})">Liberar usuários</button>
+          <button class="btn small secondary" onclick="openAssessmentEditor(${a.id})">Editar</button>
+          <button class="btn small secondary" onclick="openAssessmentUsersModal(${a.id})">Usuários</button>
           <button class="btn small outline" onclick="toggleAssessmentStatus(${a.id})">${a.status==="Encerrada"?"Reabrir":"Encerrar"}</button>
         </div>
       </div>
     </div>
   `;
 }
+
+
+
+
+function openAssessmentEditor(id=null) {
+  const a = id ? state.assessments.find(x=>x.id===id) : null;
+  if (a && !canEditAssessment(a)) return alert("Sem permissão.");
+  const questionCount = a?.questions?.length || 0;
+
+  document.body.insertAdjacentHTML("beforeend", `
+    <div class="modal-backdrop" id="modal"><div class="modal modal-large activity-editor-modal">
+      <div class="modal-head">
+        <div>
+          <h3>${a ? "Editar atividade" : "Criar nova atividade"}</h3>
+          <p class="muted">Defina as informações principais da atividade e o formato de resposta do usuário.</p>
+        </div>
+        <button class="close" onclick="closeModal()">×</button>
+      </div>
+
+      <form onsubmit="event.preventDefault(); saveAssessment(${id || "null"})">
+        <div class="form-group">
+          <label>Nome da atividade</label>
+          <input id="assTitulo" value="${a?.titulo || ""}" placeholder="Ex: Perfil Comportamental" required>
+        </div>
+
+        <div class="form-group">
+          <label>Descrição</label>
+          <textarea id="assDesc" placeholder="Descreva o objetivo da atividade">${a?.descricao || ""}</textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Status</label>
+            <select id="assStatus">
+              <option ${a?.status==="Rascunho"?"selected":""}>Rascunho</option>
+              <option ${a?.status==="Ativa"?"selected":""}>Ativa</option>
+              <option ${a?.status==="Encerrada"?"selected":""}>Encerrada</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Tela do usuário</label>
+            <select id="assMode">
+              <option value="single-card" ${a?.modeDefault==="single-card" || a?.modeDefault==="single-list" ? "selected" : ""}>Cartões</option>
+              <option value="form" ${a?.modeDefault==="form"?"selected":""}>Formulário</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Data de início</label>
+            <input type="date" id="assStart" value="${a?.startsAt || todayISO()}">
+          </div>
+
+          <div class="form-group">
+            <label>Data de finalização das perguntas</label>
+            <input type="date" id="assEnd" value="${a?.endsAt || todayISO()}">
+          </div>
+        </div>
+
+        <input type="hidden" id="assArea" value="${a?.area || (isGerencia()?currentUser().area:"Geral")}">
+        <input type="hidden" id="assDays" value="${a?.responseTimeDays || 7}">
+        <input type="hidden" id="assTarget" value="${a?.targetAudience || "Usuários"}">
+
+        ${a ? `
+          <div class="editor-inline-box">
+            <div>
+              <h3>Perguntas da atividade</h3>
+              <p class="muted">${questionCount} pergunta(s) cadastrada(s). Você pode criar, modificar ou remover perguntas.</p>
+            </div>
+            <div class="actions">
+              <button type="button" class="btn secondary" onclick="closeModal(); openQuestionBuilder(${a.id})">Gerenciar perguntas</button>
+            </div>
+          </div>
+        ` : `
+          <div class="editor-inline-box">
+            <div>
+              <h3>Perguntas da atividade</h3>
+              <p class="muted">Após criar a atividade, abra a opção Editar para cadastrar as perguntas.</p>
+            </div>
+          </div>
+        `}
+
+        <div class="actions" style="justify-content:flex-end;margin-top:12px">
+          <button type="button" class="btn secondary" onclick="closeModal()">Cancelar</button>
+          <button class="btn gold">${a ? "Salvar atividade" : "Criar atividade"}</button>
+        </div>
+      </form>
+    </div></div>
+  `);
+}
+
+
 function openAssessmentModal(id=null) {
   const a = id ? state.assessments.find(x=>x.id===id) : null;
   if (a && !canEditAssessment(a)) return alert("Sem permissão.");
   document.body.insertAdjacentHTML("beforeend", `
     <div class="modal-backdrop" id="modal"><div class="modal">
-      <div class="modal-head"><div><h3>${a?"Editar avaliação":"Criar avaliação"}</h3><p class="muted">Defina dados gerais, prazo e tela do usuário.</p></div><button class="close" onclick="closeModal()">×</button></div>
+      <div class="modal-head"><div><h3>${a?"Editar atividade":"Criar atividade"}</h3><p class="muted">Defina nome, descrição, status, tela e datas da atividade.</p></div><button class="close" onclick="closeModal()">×</button></div>
       <form onsubmit="event.preventDefault(); saveAssessment(${id || "null"})">
         <div class="form-row">
-          <div class="form-group"><label>Título</label><input id="assTitulo" value="${a?.titulo || ""}" required></div>
+          <div class="form-group"><label>Nome</label><input id="assTitulo" value="${a?.titulo || ""}" required></div>
           <div class="form-group"><label>Área</label><input id="assArea" value="${a?.area || (isGerencia()?currentUser().area:"Geral")}" ${isGerencia() ? "readonly" : ""}></div>
         </div>
         <div class="form-group"><label>Descrição</label><textarea id="assDesc">${a?.descricao || ""}</textarea></div>
         <div class="form-row">
           <div class="form-group"><label>Status</label><select id="assStatus"><option ${a?.status==="Rascunho"?"selected":""}>Rascunho</option><option ${a?.status==="Ativa"?"selected":""}>Ativa</option><option ${a?.status==="Encerrada"?"selected":""}>Encerrada</option></select></div>
-          <div class="form-group"><label>Tela do usuário</label><select id="assMode"><option value="single-card" ${a?.modeDefault==="single-card"?"selected":""}>Pergunta única - cartões</option><option value="single-list" ${a?.modeDefault==="single-list"?"selected":""}>Pergunta única - lista</option><option value="form" ${a?.modeDefault==="form"?"selected":""}>Formulário</option></select></div>
+          <div class="form-group"><label>Tela do usuário</label><select id="assMode"><option value="single-card" ${a?.modeDefault==="single-card" || a?.modeDefault==="single-list" ? "selected" : ""}>Cartões</option><option value="form" ${a?.modeDefault==="form"?"selected":""}>Formulário</option></select></div>
         </div>
         <div class="form-row">
           <div class="form-group"><label>Dias para resposta</label><input type="number" min="1" id="assDays" value="${a?.responseTimeDays || 7}"></div>
           <div class="form-group"><label>Público-alvo</label><input id="assTarget" value="${a?.targetAudience || "Usuários"}"></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label>Início</label><input type="date" id="assStart" value="${a?.startsAt || todayISO()}"></div>
-          <div class="form-group"><label>Limite</label><input type="date" id="assEnd" value="${a?.endsAt || todayISO()}"></div>
+          <div class="form-group"><label>Data de início</label><input type="date" id="assStart" value="${a?.startsAt || todayISO()}"></div>
+          <div class="form-group"><label>Data de finalização das perguntas</label><input type="date" id="assEnd" value="${a?.endsAt || todayISO()}"></div>
         </div>
         <button class="btn gold">Salvar avaliação</button>
       </form>
     </div></div>
   `);
 }
+
 function saveAssessment(id) {
+  const startsAt = document.getElementById("assStart")?.value || todayISO();
+  const endsAt = document.getElementById("assEnd")?.value || todayISO();
+  const startDate = new Date(startsAt);
+  const endDate = new Date(endsAt);
+  const diffDays = (!isNaN(startDate) && !isNaN(endDate))
+    ? Math.max(1, Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)))
+    : Number(document.getElementById("assDays")?.value || 7);
+
   const data = {
     titulo: document.getElementById("assTitulo").value.trim(),
     descricao: document.getElementById("assDesc").value.trim(),
-    area: isGerencia() ? currentUser().area : document.getElementById("assArea").value.trim(),
+    area: isGerencia() ? currentUser().area : (document.getElementById("assArea")?.value.trim() || "Geral"),
     status: document.getElementById("assStatus").value,
     modeDefault: document.getElementById("assMode").value,
-    responseTimeDays: Number(document.getElementById("assDays").value || 7),
-    targetAudience: document.getElementById("assTarget").value,
-    startsAt: document.getElementById("assStart").value,
-    endsAt: document.getElementById("assEnd").value
+    responseTimeDays: diffDays,
+    targetAudience: document.getElementById("assTarget")?.value || "Usuários",
+    startsAt,
+    endsAt
   };
-  if (!data.titulo) return alert("Informe o título.");
+
+  if (!data.titulo) return alert("Informe o nome da atividade.");
+  if (data.endsAt < data.startsAt) return alert("A data de finalização não pode ser anterior à data de início.");
+
   if (id) {
     const idx = state.assessments.findIndex(a=>a.id===id);
     state.assessments[idx] = { ...state.assessments[idx], ...data };
-    log(`Avaliação editada: ${data.titulo}`);
+    log(`Atividade editada: ${data.titulo}`);
   } else {
     state.assessments.push({ id: nowId(), ...data, createdBy: currentUser().id, questions: [] });
-    log(`Avaliação criada: ${data.titulo}`);
+    log(`Atividade criada: ${data.titulo}`);
   }
-  saveState(); closeModal(); renderAvaliacoes();
+
+  saveState();
+  closeModal();
+  if (isGerencia()) return renderControle();
+  renderAvaliacoes();
 }
+
 function toggleAssessmentStatus(id) {
   const a = state.assessments.find(x=>x.id===id);
   if (!canEditAssessment(a)) return alert("Sem permissão.");
@@ -1342,7 +1590,7 @@ function openQuestionBuilder(assessmentId) {
         </select></div>
         <div class="form-group"><label>Título/legenda da mídia</label><input id="qMediaTitle" placeholder="Ex: Assista antes de responder"></div>
       </div>
-      <div class="form-group"><label>URL da mídia</label><input id="qMediaUrl" placeholder="https://... ou assets/logo_preto.png"></div>
+      <div class="form-group"><label>URL da mídia</label><input id="qMediaUrl" placeholder="https://... ou logo_preto.png"></div>
       <div class="form-group"><label>Upload de mídia local</label><input type="file" id="qMediaFile" accept="image/*,video/*"><small class="muted">Para teste local, use arquivos pequenos.</small></div>
 
       <div id="optionFields">
@@ -1416,6 +1664,48 @@ function deleteQuestion(assessmentId, qid) {
   log(`Pergunta removida em ${a.titulo}`);
   saveState(); closeModal(); openQuestionBuilder(assessmentId);
 }
+
+
+function openAssessmentUsersModal(assessmentId) {
+  const a = state.assessments.find(x=>x.id===assessmentId);
+  const rows = state.assignments.filter(x => x.assessmentId === assessmentId)
+    .map(r => ({ row: r, user: state.users.find(u => u.id === r.userId) }))
+    .filter(x => x.user && x.user.perfil === "USUARIO");
+
+  document.body.insertAdjacentHTML("beforeend", `
+    <div class="modal-backdrop" id="modal"><div class="modal modal-large">
+      <div class="modal-head">
+        <div><h3>Usuários da atividade</h3><p class="muted">${a.titulo}</p></div>
+        <div class="actions">
+          <button class="btn secondary" onclick="closeModal(); openAssignModal(${a.id})">Editar usuários</button>
+          <button class="close" onclick="closeModal()">×</button>
+        </div>
+      </div>
+
+      <table class="table">
+        <thead><tr><th>Usuário</th><th>Respondeu?</th><th>Resultado</th><th>Prazo</th><th>Data</th><th>Ações</th></tr></thead>
+        <tbody>
+          ${rows.map(({row, user}) => `
+            <tr>
+              <td><b>${user.nome}</b></td>
+              <td><span class="badge ${statusBadge(row.status)}">${row.status === "Concluída" ? "Sim" : "Não"}</span></td>
+              <td>${row.result?.profile || "-"}</td>
+              <td>${formatDateBR(row.dueDate || a.endsAt)}</td>
+              <td>${row.finishedAt ? formatDateBR(row.finishedAt) : "-"}</td>
+              <td class="actions">
+                ${row.status === "Concluída"
+                  ? `<button class="btn small secondary" onclick="openResultModal(${row.id})">Ver resposta</button>`
+                  : `<button class="btn small outline" onclick="alert('Usuário ainda não respondeu.')">Pendente</button>`}
+              </td>
+            </tr>
+          `).join("") || `<tr><td colspan="6">Nenhum usuário vinculado a esta atividade.</td></tr>`}
+        </tbody>
+      </table>
+    </div></div>
+  `);
+}
+
+
 function openAssignModal(assessmentId) {
   const a = state.assessments.find(x=>x.id===assessmentId);
   const users = respondentUsers();
@@ -1731,8 +2021,47 @@ function toggleCourseStatus(id) {
   saveState(); renderCursos();
 }
 
+
+
 function renderControle() {
-  if (!canManage()) return layout("Controle ADM", "", `<section class="section card"><h3>Acesso restrito</h3></section>`);
+  if (!canManage()) return layout("Controle de atividades", "", `<section class="section card"><h3>Acesso restrito</h3></section>`);
+
+  if (isGerencia()) {
+    const list = visibleAssessments();
+    const active = list.filter(a=>a.status==="Ativa");
+    const closed = list.filter(a=>a.status==="Encerrada");
+    const draft = list.filter(a=>a.status==="Rascunho");
+
+    const content = `
+      <section class="section card">
+        <div class="section-head">
+          <div>
+            <h3>Controle de atividades</h3>
+            <p class="muted">Crie novas atividades e acompanhe o que está ativo, em rascunho ou encerrado.</p>
+          </div>
+          <button class="btn gold" onclick="openAssessmentEditor()">Criar nova atividade</button>
+        </div>
+
+        <div class="organic-status-line">
+          <span class="organic-status-pill">Ativas: <b>${active.length}</b></span>
+          <span class="organic-status-pill">Rascunho: <b>${draft.length}</b></span>
+          <span class="organic-status-pill">Encerradas: <b>${closed.length}</b></span>
+        </div>
+
+        <div class="section-group">
+          <div class="section-head compact-head"><h3>Ativas e rascunhos</h3><span class="badge success">${active.length + draft.length}</span></div>
+          ${active.length + draft.length ? `<div class="assessment-grid gerencia-assessment-grid">${[...active, ...draft].map(renderAssessmentAdminCard).join("")}</div>` : `<div class="empty"><b>Nenhuma atividade ativa ou em rascunho.</b></div>`}
+        </div>
+
+        <div class="section-group">
+          <div class="section-head compact-head"><h3>Encerradas</h3><span class="badge danger">${closed.length}</span></div>
+          ${closed.length ? `<div class="assessment-grid gerencia-assessment-grid">${closed.map(renderAssessmentAdminCard).join("")}</div>` : `<div class="empty"><b>Nenhuma atividade encerrada.</b></div>`}
+        </div>
+      </section>
+    `;
+    return layout("Controle de atividades", "Gestão simples e direta das atividades.", content);
+  }
+
   const assessments = visibleAssessments();
   const assessmentIds = assessments.map(a=>a.id);
   const userIds = respondentUsers().map(u=>u.id);
@@ -1776,23 +2105,8 @@ function renderControle() {
   `;
   layout("Controle ADM", "Geral e específico por usuário.", content);
 }
-function openResultModal(assignmentId) {
-  const r = state.assignments.find(x=>x.id===assignmentId);
-  if (!r?.result) return alert("Sem resultado.");
-  const u = state.users.find(x=>x.id===r.userId);
-  const a = state.assessments.find(x=>x.id===r.assessmentId);
-  document.body.insertAdjacentHTML("beforeend", `
-    <div class="modal-backdrop" id="modal"><div class="modal">
-      <div class="modal-head"><div><h3>Resposta do usuário</h3><p class="muted">${u.nome} • ${a.titulo}</p></div><button class="close" onclick="closeModal()">×</button></div>
-      ${renderResultInner(r.result)}
-      <h3>Respostas registradas</h3>
-      <div class="grid">${(r.answers||[]).map(ans => {
-        const q = a.questions.find(q=>q.id===ans.questionId);
-        return `<div class="permission-box"><b>${q?.text}</b><br><span>${ans.valueLabel || ans.value || "-"}</span></div>`;
-      }).join("") || `<p class="muted">Respostas detalhadas não disponíveis nos dados iniciais.</p>`}</div>
-    </div></div>
-  `);
-}
+
+
 function exportCSV() {
   const rows = [["Usuário","CPF","Avaliação","Status","Prazo","Resultado"]];
   state.assignments.forEach(r => {
@@ -1847,7 +2161,7 @@ function renderMinhas() {
       </div>` : `<div class="empty"><b>Nenhuma atividade pendente.</b><p class="muted">Quando houver uma nova atividade liberada, ela aparecerá aqui.</p></div>`}
     </section>
   `;
-  layout("Minhas atividades", "Atividades pendentes e disponíveis para resposta.", content);
+  layout("Minhas atividades", "Atividades disponíveis para você responder e acompanhar.", content);
 }
 
 function renderAtividadesRealizadas() {
@@ -1884,7 +2198,7 @@ function renderAtividadesRealizadas() {
       </div>` : `<div class="empty"><b>Nenhuma atividade realizada.</b><p class="muted">Depois que você finalizar uma atividade, o resultado aparecerá aqui.</p></div>`}
     </section>
   `;
-  layout("Atividades realizadas", "Respostas enviadas e resultados anteriores.", content);
+  layout("Atividades realizadas", "Histórico das respostas enviadas e dos resultados obtidos.", content);
 }
 
 function renderUserAssessmentCard(r) {
@@ -1940,12 +2254,12 @@ function renderAnswer() {
 
   document.getElementById("app").innerHTML = `
     <div class="assessment-shell"><div class="assessment-container">
-      <div class="answer-brand"><div class="brand-lidere">LIDERE</div><img class="brand-pedra-img" src="assets/logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação"></div>
+      <div class="answer-brand"><img class="answer-lidere-logo" src="lidere.png" alt="LIDERE"><img class="brand-pedra-img" src="logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação"></div>
       <div class="progress-meta"><span>${mode==="form" ? "FORMULÁRIO" : `PERGUNTA ${idx+1} DE ${total}`}</span><span class="percent">${percent}%</span></div>
       <div class="progress-track"><div class="progress-fill" style="width:${percent}%"></div></div>
       ${s.preview ? `<div class="actions" style="justify-content:center;margin-top:16px"><button class="btn small secondary" onclick="switchAnswerMode('single-card')">Cartões</button><button class="btn small secondary" onclick="switchAnswerMode('single-list')">Lista</button><button class="btn small secondary" onclick="switchAnswerMode('form')">Formulário</button><button class="btn small outline" onclick="exitAnswer()">Sair</button></div>` : ""}
       ${mode==="form" ? renderAnswerForm(a) : renderSingleQuestion(a, q, mode)}
-      <div class="footer-mark"><img src="assets/logo.png" alt="Símbolo Pedra"></div>
+      <div class="footer-mark"><img src="logo.png" alt="Símbolo Pedra"></div>
     </div></div>
   `;
 }
@@ -1956,8 +2270,8 @@ function renderSingleQuestion(a, q, mode) {
     ${renderQuestionMedia(q)}
     ${renderQuestionInput(q, mode)}
     <div class="answer-actions">
-      <button class="btn secondary" onclick="exitAnswerToActivities()">Sair sem perder respostas</button>
-      <button class="btn outline" onclick="prevQuestion()">← Voltar</button>
+      <button class="btn secondary" onclick="exitAnswerToActivities()">Voltar</button>
+      <button class="btn outline" onclick="prevQuestion()">← Pergunta anterior</button>
       <button class="btn gold" onclick="nextQuestion()">${state.answerSession.questionIndex === a.questions.length-1 ? "Finalizar avaliação" : "Próxima pergunta"} →</button>
     </div>
   `;
@@ -1967,7 +2281,7 @@ function renderAnswerForm(a) {
     <div class="answer-title"><h1>Conte um pouco mais sobre você</h1><p>Responda as perguntas abaixo para finalizar.</p></div>
     <div class="form-panel">
       ${a.questions.map(q => `<div class="form-question"><h3>${q.text}</h3>${renderQuestionMedia(q)}${renderQuestionInput(q, "form")}</div>`).join("")}
-      <div class="actions" style="justify-content:flex-end"><button class="btn secondary" onclick="exitAnswerToActivities()">Sair sem perder respostas</button><button class="btn outline" onclick="saveDraft()">Salvar rascunho</button><button class="btn gold" onclick="finishAnswer()">Finalizar avaliação</button></div>
+      <div class="actions" style="justify-content:flex-end"><button class="btn secondary" onclick="exitAnswerToActivities()">Voltar</button><button class="btn outline" onclick="saveDraft()">Salvar rascunho</button><button class="btn gold" onclick="finishAnswer()">Finalizar avaliação</button></div>
     </div>
   `;
 }
@@ -2036,7 +2350,7 @@ function finishAnswer() {
   }
   document.getElementById("app").innerHTML = `
     <div class="assessment-shell"><div class="assessment-container">
-      <div class="answer-brand"><div class="brand-lidere">LIDERE</div><img class="brand-pedra-img" src="assets/logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação"></div>
+      <div class="answer-brand"><img class="answer-lidere-logo" src="lidere.png" alt="LIDERE"><img class="brand-pedra-img" src="logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação"></div>
       <div class="answer-title"><h1>Resultado da avaliação</h1><p>Perfil calculado com base nas respostas.</p></div>
       ${renderResultInner(result)}
       <div class="answer-actions" style="justify-content:center"><button class="btn gold" onclick="state.page='realizadas'; exitAnswer()">Ver atividades realizadas</button></div>
@@ -2090,9 +2404,40 @@ function openUserResult(assignmentId) {
   document.body.insertAdjacentHTML("beforeend", `<div class="modal-backdrop" id="modal"><div class="modal"><div class="modal-head"><div><h3>Resultado</h3></div><button class="close" onclick="closeModal()">×</button></div>${renderResultInner(r.result)}</div></div>`);
 }
 
+
 function renderResultados() {
   const users = respondentUsers();
   const assignments = state.assignments.filter(r => users.some(u=>u.id===r.userId));
+
+  if (isGerencia()) {
+    const done = assignments.filter(r => r.status === "Concluída");
+    const content = `
+      <section class="section card">
+        <div class="section-head">
+          <div><h3>Atividades realizadas</h3><p class="muted">Histórico do que já foi feito pelos usuários comuns.</p></div>
+          <button class="btn secondary" onclick="exportCSV()">Exportar histórico</button>
+        </div>
+        <table class="table">
+          <thead><tr><th>Usuário</th><th>Atividade</th><th>Resultado</th><th>Respondida em</th><th>Ações</th></tr></thead>
+          <tbody>
+            ${done.map(r => {
+              const u = state.users.find(x=>x.id===r.userId);
+              const a = state.assessments.find(x=>x.id===r.assessmentId);
+              return `<tr>
+                <td><b>${u?.nome}</b></td>
+                <td>${a?.titulo}</td>
+                <td>${r.result?.profile || "-"}</td>
+                <td>${formatDateBR(r.finishedAt)}</td>
+                <td><button class="btn small secondary" onclick="openResultModal(${r.id})">Ver histórico</button></td>
+              </tr>`;
+            }).join("") || `<tr><td colspan="5">Nenhuma atividade realizada ainda.</td></tr>`}
+          </tbody>
+        </table>
+      </section>
+    `;
+    return layout("Atividades realizadas", "Histórico das atividades concluídas pelos usuários.", content);
+  }
+
   const content = `
     <section class="section card">
       <div class="section-head"><div><h3>Resultados</h3><p class="muted">Apenas usuários respondentes entram nesta visão.</p></div><button class="btn secondary" onclick="exportCSV()">Exportar CSV</button></div>
@@ -2108,6 +2453,7 @@ function renderResultados() {
   `;
   layout("Resultados", "Resultados gerais e por usuário.", content);
 }
+
 
 /* Anexos/arquivos removidos da navegação e da experiência principal. */
 
