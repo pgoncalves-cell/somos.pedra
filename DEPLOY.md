@@ -41,3 +41,10 @@ Isso significa:
 - Os dados ficam salvos no navegador de cada pessoa.
 - Em GitHub Pages, cada usuário verá sua própria base local.
 - Para multiusuário real, será necessário backend + banco de dados.
+
+
+## Páginas principais
+
+- Home: `index.html`
+- LIDERE: `lidere.html`
+- ECI 2026: `eci.html`

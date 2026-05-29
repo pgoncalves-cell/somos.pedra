@@ -3,14 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LIDERE - Ecossistema de Avaliações</title>
-  <meta name="description" content="Protótipo LIDERE/Pedra para avaliações, usuários, líderes e liderados." />
+  <title>Somos Pedra</title>
+  <meta name="description" content="Home principal Somos Pedra com acesso ao LIDERE e ECI 2026." />
   <meta name="theme-color" content="#d8d0d0" />
   <base href="./" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="app"></div>
-  <script src="app.js"></script>
+  <main class="portal-shell">
+    <div class="portal-bg-mark">PEDRA</div>
+
+    <section class="portal-card">
+      <div class="portal-top">
+        <img class="portal-pedra-logo" src="assets/logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
+      </div>
+
+      <div class="portal-title somos-title">
+        <img class="somos-logo-title" src="assets/somos.png" alt="Somos Pedra">
+        <p>Home principal dos ambientes institucionais da Pedra. Escolha abaixo qual área deseja acessar.</p>
+      </div>
+
+      <div class="portal-options logo-only-options">
+        <a class="portal-option logo-only-card portal-link" href="lidere.html" aria-label="Acessar LIDERE">
+          <img class="home-logo-only lidere-home-logo" src="assets/lidere.png" alt="LIDERE">
+        </a>
+
+        <a class="portal-option logo-only-card portal-link" href="eci.html" aria-label="Acessar ECI 2026">
+          <img class="home-logo-only eci-home-logo" src="assets/eci.png" alt="ECI 2026">
+        </a>
+      </div>
+
+      <div class="portal-footer">
+        <span>Somos Pedra • LIDERE • ECI 2026</span>
+        <span>Pedra Mineração, Concreto e Pavimentação</span>
+      </div>
+    </section>
+  </main>
 </body>
 </html>

@@ -1,5 +1,5 @@
 
-const STORAGE_KEY = "lidere_ecossistema_git_v15";
+const STORAGE_KEY = "lidere_ecossistema_git_v32";
 
 const profileLabels = {
   analitico: "Analítico",
@@ -20,58 +20,13 @@ const defaultState = {
   page: "dashboard",
   answerSession: null,
   users: [
-    { id: 1, nome: "Pedro Paulo", cpf: "11122233344", senha: "Adm@1234", perfil: "ADM", tipo: "ADMINISTRATIVO", area: "", classId: null, status: "Ativo", mustChange: false },
-    { id: 2, nome: "Ana Gerente", cpf: "22233344455", senha: "Ger@1234", perfil: "GERENCIA", tipo: "ADMINISTRATIVO", area: "", classId: 1, status: "Ativo", mustChange: false },
-    { id: 3, nome: "Carlos Líder", cpf: "33344455566", senha: "Lid@1234", perfil: "USUARIO", tipo: "LIDER", area: "", classId: 1, status: "Ativo", mustChange: false },
-    { id: 4, nome: "João Liderado", cpf: "44455566677", senha: "User@1234", perfil: "USUARIO", tipo: "LIDERADO", area: "", classId: 1, status: "Ativo", mustChange: false },
-    { id: 5, nome: "Maria Liderada", cpf: "55566677788", senha: "User@1234", perfil: "USUARIO", tipo: "LIDERADO", area: "", classId: 1, status: "Ativo", mustChange: false }
+    { id: 1, nome: "Pedro Gonçalves", cpf: "11122233344", senha: "Adm@1234", perfil: "ADM", tipo: "ADMINISTRATIVO", area: "", classId: null, status: "Ativo", mustChange: false },
+    { id: 2, nome: "Bruna Zandona", cpf: "22233344455", senha: "Ger@1234", perfil: "GERENCIA", tipo: "ADMINISTRATIVO", area: "", classId: null, status: "Ativo", mustChange: false },
+    { id: 3, nome: "Livia Marques", cpf: "33344455566", senha: "Lid@1234", perfil: "USUARIO", tipo: "LIDERADO", area: "", classId: null, status: "Ativo", mustChange: false }
   ],
-  relationships: [
-    { id: 1, leaderId: 3, subordinateId: 4 },
-    { id: 2, leaderId: 3, subordinateId: 5 }
-  ],
-  classes: [
-    {
-      id: 1,
-      name: "Turma Liderança Britagem",
-      description: "Turma piloto para desenvolvimento de líderes da área de britagem.",
-      area: "Britagem",
-      status: "Ativa",
-      startDate: "2026-05-20",
-      endDate: "2026-06-20",
-      userIds: [3,4,5],
-      assessmentIds: [1,2],
-      courseIds: [1]
-    }
-  ],
-  courses: [
-    {
-      id: 1,
-      title: "Fundamentos de Liderança",
-      description: "Curso inicial para desenvolvimento de líderes, comunicação e acompanhamento de equipe.",
-      status: "Rascunho",
-      area: "Britagem",
-      workload: "4h",
-      modules: [
-        {
-          id: 11,
-          title: "Introdução à liderança",
-          type: "video",
-          content: "Conteúdo demonstrativo para futuro módulo de curso.",
-          mediaType: "video-url",
-          mediaUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-        },
-        {
-          id: 12,
-          title: "Material de apoio",
-          type: "text",
-          content: "Espaço para apostilas, PDFs, vídeos, imagens e atividades.",
-          mediaType: "",
-          mediaUrl: ""
-        }
-      ]
-    }
-  ],
+  relationships: [],
+  classes: [],
+  courses: [],
   assessments: [
     {
       id: 1,
@@ -83,7 +38,7 @@ const defaultState = {
       responseTimeDays: 7,
       startsAt: "2026-05-20",
       endsAt: "2026-05-27",
-      targetAudience: "Todos os usuários",
+      targetAudience: "Usuários",
       createdBy: 1,
       questions: [
         {
@@ -92,9 +47,6 @@ const defaultState = {
           subtitle: "Selecione a opção que mais combina com você.",
           type: "multipla",
           required: true,
-          mediaType: "image-url",
-          mediaUrl: "assets/logo_preto.png",
-          mediaTitle: "Referência institucional",
           options: [
             { label: "Paciente", scores: { analitico: 2, colaborativo: 3, executor: 0, comunicador: 0 } },
             { label: "Preciso", scores: { analitico: 4, colaborativo: 0, executor: 1, comunicador: 0 } },
@@ -114,55 +66,34 @@ const defaultState = {
             { label: "Tomo decisões rapidamente", scores: { analitico: 0, colaborativo: 0, executor: 4, comunicador: 1 } },
             { label: "Prefiro mais tempo para pensar", scores: { analitico: 3, colaborativo: 1, executor: 0, comunicador: 0 } }
           ]
-        },
-        {
-          id: 103,
-          text: "De 1 a 5, como você avalia sua organização?",
-          subtitle: "Escolha uma nota para sua organização.",
-          type: "escala",
-          required: true,
-          options: [
-            { label: "1", scores: { comunicador: 2 } },
-            { label: "2", scores: { comunicador: 1, colaborativo: 1 } },
-            { label: "3", scores: { colaborativo: 2 } },
-            { label: "4", scores: { analitico: 2, executor: 1 } },
-            { label: "5", scores: { analitico: 3, executor: 2 } }
-          ]
-        },
-        {
-          id: 104,
-          text: "Descreva um ponto forte seu",
-          subtitle: "Responda com suas próprias palavras.",
-          type: "texto",
-          required: false,
-          options: []
         }
       ]
     },
     {
       id: 2,
-      titulo: "Diagnóstico de Liderança",
-      descricao: "Avalia comportamentos de liderança e feedback.",
+      titulo: "Autoavaliação de Desenvolvimento",
+      descricao: "Avaliação rápida sobre organização, foco e comunicação.",
       status: "Encerrada",
-      area: "Britagem",
+      area: "Geral",
       modeDefault: "form",
       responseTimeDays: 5,
       startsAt: "2026-05-10",
       endsAt: "2026-05-15",
-      targetAudience: "Líderes",
+      targetAudience: "Usuários",
       createdBy: 2,
       questions: [
         {
           id: 201,
-          text: "Você realiza feedbacks com frequência?",
+          text: "Como você avalia sua organização?",
           subtitle: "Selecione uma opção.",
-          type: "multipla",
+          type: "escala",
           required: true,
           options: [
-            { label: "Sim, semanalmente", scores: { colaborativo: 4, comunicador: 3 } },
-            { label: "Sim, mensalmente", scores: { colaborativo: 3, comunicador: 2 } },
-            { label: "Raramente", scores: { analitico: 1 } },
-            { label: "Não realizo", scores: { executor: 1 } }
+            { label: "1", scores: { comunicador: 1 } },
+            { label: "2", scores: { comunicador: 1, colaborativo: 1 } },
+            { label: "3", scores: { colaborativo: 2 } },
+            { label: "4", scores: { analitico: 2, executor: 1 } },
+            { label: "5", scores: { analitico: 3, executor: 2 } }
           ]
         }
       ]
@@ -170,13 +101,9 @@ const defaultState = {
   ],
   assignments: [
     { id: 1, assessmentId: 1, userId: 3, status: "Pendente", assignedAt: "2026-05-20", dueDate: "2026-05-27", result: null, answers: [] },
-    { id: 2, assessmentId: 1, userId: 4, status: "Pendente", assignedAt: "2026-05-20", dueDate: "2026-05-27", result: null, answers: [] },
-    { id: 3, assessmentId: 1, userId: 5, status: "Concluída", assignedAt: "2026-05-20", dueDate: "2026-05-27", finishedAt: "2026-05-21", result: { profile: "Colaborativo", profileKey: "colaborativo", scores: { analitico: 4, colaborativo: 9, executor: 2, comunicador: 5 } }, answers: [] },
-    { id: 4, assessmentId: 2, userId: 3, status: "Concluída", assignedAt: "2026-05-10", dueDate: "2026-05-15", finishedAt: "2026-05-12", result: { profile: "Executor", profileKey: "executor", scores: { analitico: 2, colaborativo: 3, executor: 8, comunicador: 4 } }, answers: [] }
+    { id: 2, assessmentId: 2, userId: 3, status: "Concluída", assignedAt: "2026-05-10", dueDate: "2026-05-15", finishedAt: "2026-05-12", result: { profile: "Analítico", profileKey: "analitico", scores: { analitico: 8, colaborativo: 3, executor: 4, comunicador: 2 } }, answers: [] }
   ],
-  files: [
-    { id: 1, userId: 4, assessmentId: 1, name: "documento_admissional.pdf", type: "application/pdf", size: 24576, uploadedBy: 1, createdAt: "2026-05-20", dataUrl: "" }
-  ],
+  files: [],
   auditLogs: [
     { id: 1, userId: 1, action: "Sistema inicializado", createdAt: "2026-05-20 09:00" }
   ]
@@ -341,7 +268,7 @@ function login(cpf, senha) {
   const user = state.users.find(u => cleanCpf(u.cpf) === cleanCpf(cpf) && u.senha === senha && u.status === "Ativo");
   if (!user) return alert("CPF ou senha inválidos, ou usuário inativo.");
   state.currentUserId = user.id;
-  state.page = "dashboard";
+  state.page = user.perfil === "USUARIO" ? "minhas" : "dashboard";
   log("Login realizado");
   saveState();
   render();
@@ -349,7 +276,7 @@ function login(cpf, senha) {
 function logout() {
   log("Logout realizado");
   state.currentUserId = null;
-  state.page = "dashboard";
+  state.page = "login";
   saveState();
   render();
 }
@@ -359,36 +286,164 @@ function setPage(page) {
   render();
 }
 
+
+function goPublicHome() {
+  window.location.href = "index.html";
+}
+
+function goLogin() {
+  window.location.href = "lidere.html";
+}
+
+function goEciComingSoon() {
+  window.location.href = "eci.html";
+}
+
+function renderPublicHome() {
+  document.getElementById("app").innerHTML = `
+    <main class="portal-shell">
+      <div class="portal-bg-mark">PEDRA</div>
+
+      <section class="portal-card">
+        <div class="portal-top">
+          <img class="portal-pedra-logo" src="assets/logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
+          <span class="portal-tag">Portal institucional</span>
+        </div>
+
+        <div class="portal-title">
+          <h1>Escolha o ambiente</h1>
+          <p>Central de acesso aos projetos de desenvolvimento, cultura, avaliações e encontros institucionais.</p>
+        </div>
+
+        <div class="portal-options">
+          <button class="portal-option" onclick="goLogin()">
+            <div class="portal-option-logo lidere-option-logo">
+              <img class="lidere-card-logo" src="assets/lidere.png" alt="LIDERE">
+              <img src="assets/logo.png" alt="Símbolo Pedra">
+            </div>
+            <div>
+              <h2>LIDERE</h2>
+              <p>Ambiente de avaliações, liderança, perfis e desenvolvimento.</p>
+              <span class="portal-enter">Acessar sistema →</span>
+            </div>
+          </button>
+
+          <button class="portal-option eci" onclick="goEciComingSoon()">
+            <div class="portal-option-logo eci-logo">
+              <strong>ECI</strong>
+              <span>2026</span>
+            </div>
+            <div>
+              <h2>ECI 2026</h2>
+              <p>14° Encontro Construindo Ideias. Em breve, um novo ambiente para conteúdos, programação e participação.</p>
+              <span class="portal-enter">Ver prévia →</span>
+            </div>
+          </button>
+
+          <button class="portal-option somos-pedra" onclick="goPublicHome()">
+            <div class="portal-option-logo">
+              <img class="somos-pedra-logo" src="assets/logo_preto.png" alt="Somos Pedra">
+            </div>
+            <div>
+              <h2>Somos Pedra</h2>
+              <p>Voltar para a página inicial do portal institucional Pedra.</p>
+              <span class="portal-enter">Voltar para home →</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="portal-footer">
+          <span>LIDERE • ECI 2026</span>
+          <span>Pedra Mineração, Concreto e Pavimentação</span>
+        </div>
+      </section>
+    </main>
+  `;
+}
+
+function renderEciComingSoon() {
+  document.getElementById("app").innerHTML = `
+    <main class="eci-shell">
+      <section class="eci-card">
+        <div class="eci-header">
+          <button class="btn secondary" onclick="goPublicHome()">← Somos Pedra</button>
+          <img class="eci-pedra-logo" src="assets/logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
+        </div>
+
+        <div class="eci-content">
+          <div class="eci-mark">
+            <strong>ECI</strong>
+            <span>2026</span>
+          </div>
+
+          <span class="portal-tag">Em breve</span>
+
+          <h1>14° Encontro Construindo Ideias</h1>
+          <p>
+            Estamos preparando uma nova experiência para o ECI 2026,
+            com acesso a informações, conteúdos, programação e futuras interações do encontro.
+          </p>
+
+          <div class="eci-preview-grid">
+            <div>
+              <b>Programação</b>
+              <span>Agenda e momentos do evento.</span>
+            </div>
+            <div>
+              <b>Conteúdos</b>
+              <span>Materiais, comunicados e novidades.</span>
+            </div>
+            <div>
+              <b>Participação</b>
+              <span>Espaço futuro para atividades e interações.</span>
+            </div>
+          </div>
+
+          <button class="btn gold" onclick="goPublicHome()">Voltar para tela principal</button>
+        </div>
+      </section>
+    </main>
+  `;
+}
+
 function renderLogin() {
   document.getElementById("app").innerHTML = `
     <div class="login-shell">
-      <section class="login-brand">
-        <div>
-          <div class="brand-row">
-            <div class="brand-lidere">LIDERE</div>
-            <img class="brand-pedra-img" src="assets/logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
+      <section class="login-brand ready-screen">
+        <div class="login-brand-content">
+          <div class="login-brand-top">
+            <img class="login-lidere-logo" src="assets/lidere.png" alt="LIDERE">
           </div>
-          <h1>Ecossistema de avaliações, perfis e desenvolvimento.</h1>
-          <p>Protótipo funcional local com login, usuários, avaliações, perguntas, respostas, resultados, arquivos e controle administrativo salvos no navegador.</p>
+
+          <div class="login-brand-copy">
+            <h1>Ecossistema de avaliações, perfis e desenvolvimento.</h1>
+            <p>Ambiente digital para gestão de usuários, avaliações, perguntas, respostas, resultados e acompanhamento administrativo.</p>
+          </div>
+
+          <div class="login-brand-bottom">
+            <img class="login-pedra-logo-bottom" src="assets/logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
+          </div>
         </div>
-        <small>Dados salvos localmente via localStorage. Para produção, usar banco de dados e backend.</small>
       </section>
       <section class="login-panel">
         <div class="login-card card">
-          <h2>Acessar sistema</h2>
-          <p class="muted">Use CPF e senha. Os acessos de teste estão abaixo.</p>
-          <form onsubmit="event.preventDefault(); login(document.getElementById('cpf').value, document.getElementById('senha').value)">
+          <div class="login-mini-actions"><button type="button" class="btn gold small login-back-btn" onclick="goPublicHome()">← Somos Pedra</button></div><h2>Acessar sistema</h2>
+                    <form onsubmit="event.preventDefault(); login(document.getElementById('cpf').value, document.getElementById('senha').value)">
             <div class="form-group"><label>CPF</label><input id="cpf" placeholder="000.000.000-00"></div>
             <div class="form-group"><label>Senha</label><input id="senha" type="password" placeholder="Digite a senha"></div>
             <button class="btn gold" type="submit" style="width:100%">Entrar</button>
           </form>
-          <div class="quick">
-            <b>Acessos rápidos</b>
-            ${state.users.slice(0,4).map(u => `
-              <button onclick="document.getElementById('cpf').value='${u.cpf}';document.getElementById('senha').value='${u.senha}'">
-                <b>${u.perfil}</b> — ${u.nome}<br><small>${maskCpf(u.cpf)} | ${u.senha}</small>
+          <div class="quick compact-quick">
+            <b>Acessos de demonstração</b>
+            ${state.users.slice(0,3).map(u => `
+              <button class="quick-access-item" onclick="document.getElementById('cpf').value='${u.cpf}';document.getElementById('senha').value='${u.senha}'">
+                <span class="quick-access-top"><b>${u.perfil}</b><span>${u.nome}</span></span>
+                <small>${maskCpf(u.cpf)} | ${u.senha}</small>
               </button>
             `).join("")}
+          </div>
+          <div class="login-mobile-footer-logo">
+            <img src="assets/logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação">
           </div>
         </div>
       </section>
@@ -398,22 +453,25 @@ function renderLogin() {
 
 function layout(title, subtitle, content) {
   const u = currentUser();
-  const nav = [
-    ["dashboard","Dashboard"],
-    ["usuarios","Usuários"],
-    ["avaliacoes","Atividades"],
-    ["controle","Controle Geral"],
-    ["minhas","Minhas atividades"],
-    ["resultados","Histórico"],
-    ["logs","Logs"],
-    ["config","Configurações"]
-  ].filter(([key]) => {
-    if (key === "minhas") return canAnswer();
-    if (["avaliacoes","controle"].includes(key)) return canManage();
-    if (["logs","config"].includes(key)) return isAdm();
-    if (["usuarios","resultados"].includes(key)) return canManage() || u.tipo === "LIDER";
-    return true;
-  });
+  const nav = (u.perfil === "USUARIO")
+    ? [
+        ["minhas","Minhas atividades"],
+        ["realizadas","Atividades realizadas"]
+      ]
+    : [
+        ["dashboard","Dashboard"],
+        ["usuarios","Usuários"],
+        ["avaliacoes","Atividades"],
+        ["controle","Controle Geral"],
+        ["resultados","Histórico"],
+        ["logs","Logs"],
+        ["config","Configurações"]
+      ].filter(([key]) => {
+        if (["avaliacoes","controle"].includes(key)) return canManage();
+        if (["logs","config"].includes(key)) return isAdm();
+        if (["usuarios","resultados"].includes(key)) return canManage() || u.tipo === "LIDER";
+        return true;
+      });
 
   document.getElementById("app").innerHTML = `
     <div class="layout">
@@ -469,6 +527,55 @@ function readFileAsDataUrl(file, callback) {
 }
 
 
+
+
+function getDraftAnswers(assignmentId) {
+  return state.drafts?.[assignmentId] || {};
+}
+
+function saveDraftAnswer(questionId, answer) {
+  if (!state.answerSession || state.answerSession.preview) return;
+  const assignmentId = state.answerSession.assignmentId;
+  state.drafts = state.drafts || {};
+  state.drafts[assignmentId] = state.drafts[assignmentId] || {};
+  state.drafts[assignmentId][questionId] = answer;
+  saveState();
+}
+
+function clearDraftAnswers(assignmentId) {
+  if (!state.drafts) return;
+  delete state.drafts[assignmentId];
+  saveState();
+}
+
+function userAnswerLabel(assignment, questionId) {
+  const ans = assignment.answers?.find(a => String(a.questionId) === String(questionId));
+  if (!ans) return "-";
+  return ans.valueLabel || ans.value || "-";
+}
+
+function renderCompletedAnswers(assignment) {
+  const assessment = state.assessments.find(a => a.id === assignment.assessmentId);
+  if (!assessment) return "";
+
+  const result = assignment.result
+    ? `<div class="result-chip"><span>Resultado</span><b>${assignment.result.profile}</b></div>`
+    : `<div class="result-chip muted-chip"><span>Resultado</span><b>Não calculado</b></div>`;
+
+  const answers = assessment.questions.map(q => `
+    <div class="answer-review-row">
+      <span>${q.text}</span>
+      <b>${userAnswerLabel(assignment, q.id)}</b>
+    </div>
+  `).join("");
+
+  return `
+    <div class="answer-review">
+      ${result}
+      <div class="answer-review-list">${answers}</div>
+    </div>
+  `;
+}
 
 function renderDashboard() {
   const u = currentUser();
@@ -1698,28 +1805,88 @@ function exportCSV() {
   downloadText("controle_respostas.csv", csv);
 }
 
+
 function renderMinhas() {
-  if (!canAnswer()) return layout("Minhas avaliações", "", `<section class="section card"><h3>Área exclusiva de usuários</h3><p class="muted">ADM e Gerência não respondem questionários. Use Avaliações e Controle ADM.</p></section>`);
-  const mine = state.assignments.filter(a=>a.userId===currentUser().id);
-  const pending = mine.filter(a=>a.status==="Pendente");
-  const done = mine.filter(a=>a.status==="Concluída");
+  if (!canAnswer()) return layout("Minhas atividades", "", `<section class="section card"><h3>Área exclusiva de usuários</h3></section>`);
+
+  const pending = state.assignments
+    .filter(a => a.userId === currentUser().id && a.status === "Pendente")
+    .map(a => ({ assignment: a, assessment: state.assessments.find(x => x.id === a.assessmentId) }))
+    .filter(x => x.assessment && x.assessment.status === "Ativa");
+
   const content = `
-    <div class="grid cols-3" style="margin-bottom:18px">
-      <div class="stat card"><span>Total</span><strong>${mine.length}</strong></div>
-      <div class="stat card"><span>Pendentes</span><strong>${pending.length}</strong></div>
-      <div class="stat card"><span>Respondidas</span><strong>${done.length}</strong></div>
-    </div>
     <section class="section card">
-      <div class="section-head"><div><h3>Pendentes de responder</h3><p class="muted">Avaliações liberadas para você.</p></div><span class="badge warning">${pending.length}</span></div>
-      ${pending.length ? `<div class="user-assessment-grid">${pending.map(renderUserAssessmentCard).join("")}</div>` : `<div class="empty"><b>Nenhuma pendente.</b></div>`}
-    </section><br>
-    <section class="section card">
-      <div class="section-head"><div><h3>Respondidas pelo usuário</h3><p class="muted">Histórico e resultados.</p></div><span class="badge success">${done.length}</span></div>
-      ${done.length ? `<div class="user-assessment-grid">${done.map(renderUserAssessmentCard).join("")}</div>` : `<div class="empty"><b>Nenhuma respondida.</b></div>`}
+      <div class="section-head">
+        <div>
+          <h3>Minhas atividades</h3>
+          <p class="muted">Atividades disponíveis para resposta. Você pode voltar e continuar depois sem perder as respostas já marcadas.</p>
+        </div>
+        <span class="badge warning">${pending.length} pendente(s)</span>
+      </div>
+
+      ${pending.length ? `<div class="user-assessment-grid">
+        ${pending.map(({assignment, assessment}) => {
+          const draftCount = Object.keys(getDraftAnswers(assignment.id)).length;
+          return `
+            <div class="user-assessment-card">
+              <div class="card-top"><div class="icon todo">!</div><span class="badge warning">Pendente</span></div>
+              <h3>${assessment.titulo}</h3>
+              <p>${assessment.descricao || "Atividade aguardando resposta."}</p>
+              <div class="meta-pills">
+                <span>${assessment.questions.length} pergunta(s)</span>
+                <span>Prazo ${formatDateBR(assignment.dueDate || assessment.endsAt)}</span>
+                ${draftCount ? `<span>Rascunho: ${draftCount} resposta(s)</span>` : ""}
+              </div>
+              <div class="card-footer">
+                <span class="muted">${draftCount ? "Rascunho salvo" : "Liberada"}</span>
+                <button class="btn small gold" onclick="startAssessment(${assignment.id})">${draftCount ? "Continuar" : "Responder"}</button>
+              </div>
+            </div>
+          `;
+        }).join("")}
+      </div>` : `<div class="empty"><b>Nenhuma atividade pendente.</b><p class="muted">Quando houver uma nova atividade liberada, ela aparecerá aqui.</p></div>`}
     </section>
   `;
-  layout("Minhas avaliações", "Pendentes e respondidas.", content);
+  layout("Minhas atividades", "Atividades pendentes e disponíveis para resposta.", content);
 }
+
+function renderAtividadesRealizadas() {
+  if (!canAnswer()) return layout("Atividades realizadas", "", `<section class="section card"><h3>Área exclusiva de usuários</h3></section>`);
+
+  const done = state.assignments
+    .filter(a => a.userId === currentUser().id && a.status === "Concluída")
+    .map(a => ({ assignment: a, assessment: state.assessments.find(x => x.id === a.assessmentId) }))
+    .filter(x => x.assessment);
+
+  const content = `
+    <section class="section card">
+      <div class="section-head">
+        <div>
+          <h3>Atividades realizadas</h3>
+          <p class="muted">Histórico com as respostas enviadas e os resultados das avaliações anteriores.</p>
+        </div>
+        <span class="badge success">${done.length} realizada(s)</span>
+      </div>
+
+      ${done.length ? `<div class="completed-activities">
+        ${done.map(({assignment, assessment}) => `
+          <div class="completed-card">
+            <div class="completed-head">
+              <div>
+                <h3>${assessment.titulo}</h3>
+                <p class="muted">Respondida em ${formatDateBR(assignment.finishedAt || assignment.assignedAt)}</p>
+              </div>
+              <span class="badge success">Concluída</span>
+            </div>
+            ${renderCompletedAnswers(assignment)}
+          </div>
+        `).join("")}
+      </div>` : `<div class="empty"><b>Nenhuma atividade realizada.</b><p class="muted">Depois que você finalizar uma atividade, o resultado aparecerá aqui.</p></div>`}
+    </section>
+  `;
+  layout("Atividades realizadas", "Respostas enviadas e resultados anteriores.", content);
+}
+
 function renderUserAssessmentCard(r) {
   const a = state.assessments.find(x=>x.id===r.assessmentId);
   const done = r.status === "Concluída";
@@ -1742,7 +1909,7 @@ function startAssessment(assignmentId) {
   const a = state.assessments.find(x=>x.id===ass.assessmentId);
   if (!ass || !a) return alert("Avaliação não encontrada.");
   if (a.status !== "Ativa") return alert("Esta avaliação não está ativa.");
-  state.answerSession = { assignmentId, questionIndex: 0, answers: {}, preview: false };
+  state.answerSession = { assignmentId, questionIndex: 0, answers: getDraftAnswers(assignmentId), preview: false };
   saveState(); renderAnswer();
 }
 function previewAssessment(assessmentId) {
@@ -1755,6 +1922,13 @@ function answerAssessment() {
   const assignment = s.assignmentId ? state.assignments.find(x=>x.id===s.assignmentId) : null;
   return state.assessments.find(a=>a.id === (s.assessmentId || assignment?.assessmentId));
 }
+function exitAnswerToActivities() {
+  state.answerSession = null;
+  state.page = "minhas";
+  saveState();
+  render();
+}
+
 function renderAnswer() {
   const s = state.answerSession;
   const a = answerAssessment();
@@ -1782,6 +1956,7 @@ function renderSingleQuestion(a, q, mode) {
     ${renderQuestionMedia(q)}
     ${renderQuestionInput(q, mode)}
     <div class="answer-actions">
+      <button class="btn secondary" onclick="exitAnswerToActivities()">Sair sem perder respostas</button>
       <button class="btn outline" onclick="prevQuestion()">← Voltar</button>
       <button class="btn gold" onclick="nextQuestion()">${state.answerSession.questionIndex === a.questions.length-1 ? "Finalizar avaliação" : "Próxima pergunta"} →</button>
     </div>
@@ -1792,7 +1967,7 @@ function renderAnswerForm(a) {
     <div class="answer-title"><h1>Conte um pouco mais sobre você</h1><p>Responda as perguntas abaixo para finalizar.</p></div>
     <div class="form-panel">
       ${a.questions.map(q => `<div class="form-question"><h3>${q.text}</h3>${renderQuestionMedia(q)}${renderQuestionInput(q, "form")}</div>`).join("")}
-      <div class="actions" style="justify-content:flex-end"><button class="btn outline" onclick="saveDraft()">Salvar rascunho</button><button class="btn gold" onclick="finishAnswer()">Finalizar avaliação</button></div>
+      <div class="actions" style="justify-content:flex-end"><button class="btn secondary" onclick="exitAnswerToActivities()">Sair sem perder respostas</button><button class="btn outline" onclick="saveDraft()">Salvar rascunho</button><button class="btn gold" onclick="finishAnswer()">Finalizar avaliação</button></div>
     </div>
   `;
 }
@@ -1813,7 +1988,9 @@ function escapeAttr(s) { return String(s).replaceAll("'","&#39;").replaceAll('"'
 function setAnswer(questionId, value, label) {
   const a = answerAssessment();
   const q = a.questions.find(q=>q.id===questionId);
-  state.answerSession.answers[questionId] = { questionId, value, index: typeof value === "number" ? value : null, valueLabel: label };
+  const answer = { questionId, value, index: typeof value === "number" ? value : null, valueLabel: label };
+  state.answerSession.answers[questionId] = answer;
+  saveDraftAnswer(questionId, answer);
   saveState(); renderAnswer();
 }
 function validateCurrent(q) {
@@ -1853,6 +2030,7 @@ function finishAnswer() {
     ass.finishedAt = todayISO();
     ass.result = result;
     ass.answers = Object.values(s.answers);
+    clearDraftAnswers(ass.id);
     log(`Avaliação respondida: ${a.titulo}`);
     saveState();
   }
@@ -1861,7 +2039,7 @@ function finishAnswer() {
       <div class="answer-brand"><div class="brand-lidere">LIDERE</div><img class="brand-pedra-img" src="assets/logo_preto.png" alt="Pedra Mineração, Concreto e Pavimentação"></div>
       <div class="answer-title"><h1>Resultado da avaliação</h1><p>Perfil calculado com base nas respostas.</p></div>
       ${renderResultInner(result)}
-      <div class="answer-actions" style="justify-content:center"><button class="btn gold" onclick="exitAnswer()">Voltar ao sistema</button></div>
+      <div class="answer-actions" style="justify-content:center"><button class="btn gold" onclick="state.page='realizadas'; exitAnswer()">Ver atividades realizadas</button></div>
     </div></div>
   `;
 }
@@ -1904,7 +2082,7 @@ function renderResultInner(result) {
 function exitAnswer() {
   state.answerSession = null;
   saveState();
-  setPage(canAnswer() ? "minhas" : "avaliacoes");
+  setPage(canAnswer() ? (state.page || "minhas") : "avaliacoes");
 }
 function openUserResult(assignmentId) {
   const r = state.assignments.find(x=>x.id===assignmentId);
@@ -1984,7 +2162,9 @@ function downloadText(name, text) {
 function closeModal() { document.getElementById("modal")?.remove(); }
 
 function render() {
-  if (!currentUser()) return renderLogin();
+  if (!currentUser()) {
+    return renderLogin();
+  }
   if (state.answerSession) return renderAnswer();
 
   const routes = {
@@ -1993,6 +2173,7 @@ function render() {
     avaliacoes: renderAvaliacoes,
     controle: renderControle,
     minhas: renderMinhas,
+    realizadas: renderAtividadesRealizadas,
     resultados: renderResultados,
     logs: renderLogs,
     config: renderConfig
@@ -2003,6 +2184,10 @@ function render() {
     saveState();
   }
 
+  if (currentUser()?.perfil === "USUARIO" && !["minhas","realizadas"].includes(state.page)) {
+    state.page = "minhas";
+    saveState();
+  }
   routes[state.page]();
 }
 

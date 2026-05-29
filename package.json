@@ -1,6 +1,6 @@
 {
-  "name": "lidere-ecossistema-avaliacoes",
-  "version": "0.15.0",
+  "name": "lidere-visao-usuario-atividades-realizadas",
+  "version": "0.32.0",
   "private": true,
   "description": "Protótipo estático do ecossistema LIDERE/Pedra para avaliações.",
   "scripts": {

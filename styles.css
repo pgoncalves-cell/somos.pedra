@@ -1,4 +1,90 @@
 
+/* =========================
+   Tipografia LIDERE / Pedra
+   Títulos: LOUBAG
+   Textos: JetBrains Mono
+   ========================= */
+
+/*
+  LOUBAG é uma fonte customizada/licenciada.
+  Para funcionar em qualquer computador/navegador, adicione o arquivo licenciado em:
+  assets/fonts/loubag.woff2
+
+  Quando o arquivo existir, esta regra será usada.
+  Se o arquivo não existir, o navegador tenta usar a fonte instalada localmente
+  e depois aplica os fallbacks.
+*/
+@font-face {
+  font-family: "LOUBAG";
+  src:
+    local("LOUBAG"),
+    local("Loubag"),
+    url("./assets/fonts/loubag.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-title: "LOUBAG", "Arial Black", Impact, sans-serif;
+  --font-body: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+body,
+button,
+input,
+select,
+textarea,
+.table,
+.nav,
+.badge,
+.profile,
+.muted,
+small,
+p,
+label,
+td,
+th {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+.topbar h1,
+.login-brand h1,
+.brand-lidere,
+.result-profile,
+.assessment-title h1,
+.answer-title h1,
+.organic-card h3,
+.organic-action b,
+.stat strong {
+  font-family: var(--font-title);
+  letter-spacing: .01em;
+}
+
+.brand-lidere {
+  letter-spacing: .02em !important;
+}
+
+.login-brand h1,
+.topbar h1,
+.answer-title h1,
+.assessment-title h1 {
+  letter-spacing: .005em !important;
+}
+
+.btn,
+.nav button,
+.inline-view-btn,
+.status-toggle {
+  font-family: var(--font-body);
+}
+
+
+
 :root{
   --bg:#d8d0d0;
   --panel:#f5f1f1;
@@ -6,8 +92,8 @@
   --text:#2f2f2f;
   --muted:#6f6f6f;
   --line:#bfb7b7;
-  --gold:#ffc43d;
-  --gold2:#e5a800;
+  --gold:#d8c713;
+  --gold2:#d8c713;
   --graphite:#4a4a4a;
   --green:#4f6f55;
   --red:#8f2f2f;
@@ -15,12 +101,12 @@
   --shadow:0 18px 45px rgba(47,47,47,.14);
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+body{margin:0;font-family:var(--font-body);background:var(--bg);color:var(--text)}
 button,input,select,textarea{font:inherit}
 button{border:0;cursor:pointer}
 input,select,textarea{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fbf8f8;color:var(--text);outline:none}
 textarea{min-height:96px;resize:vertical}
-input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px rgba(255,196,61,.18);border-color:var(--gold2)}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px rgba(216,199,19,.18);border-color:var(--gold2)}
 label{font-size:13px;font-weight:900;color:var(--graphite)}
 h1,h2,h3,h4,p{margin-top:0}
 .muted{color:var(--muted)}
@@ -34,7 +120,7 @@ h1,h2,h3,h4,p{margin-top:0}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}
 .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900;background:var(--panel2);color:var(--graphite)}
 .badge.success{background:rgba(79,111,85,.18);color:var(--green)}
-.badge.warning{background:rgba(255,196,61,.24);color:#8a6200}
+.badge.warning{background:rgba(216,199,19,.24);color:#8a6200}
 .badge.danger{background:rgba(143,47,47,.14);color:var(--red)}
 .badge.blue{background:rgba(88,103,127,.16);color:var(--blue)}
 .actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
@@ -98,7 +184,7 @@ h1,h2,h3,h4,p{margin-top:0}
 .tabs button.active{border-color:var(--gold)}
 .assessment-grid{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:18px}
 .assessment-card{overflow:hidden;background:#f8f4f4;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 28px rgba(47,47,47,.08)}
-.assessment-hero{height:120px;background:linear-gradient(135deg,rgba(47,47,47,.12),rgba(255,196,61,.22)),radial-gradient(circle at 76% 35%,rgba(255,196,61,.58) 0 18px,transparent 19px),#d8d0d0;display:flex;align-items:flex-start;justify-content:space-between;padding:16px}
+.assessment-hero{height:120px;background:linear-gradient(135deg,rgba(47,47,47,.12),rgba(216,199,19,.22)),radial-gradient(circle at 76% 35%,rgba(216,199,19,.58) 0 18px,transparent 19px),#d8d0d0;display:flex;align-items:flex-start;justify-content:space-between;padding:16px}
 .assessment-hero .brand-lidere{font-size:24px}
 .assessment-content{padding:18px;display:grid;gap:11px}
 .meta-pills{display:flex;gap:8px;flex-wrap:wrap}
@@ -111,7 +197,7 @@ h1,h2,h3,h4,p{margin-top:0}
 .user-assessment-grid{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:18px}
 .user-assessment-card{min-height:250px;padding:18px;background:#f8f4f4;border:1px solid var(--line);border-radius:22px;box-shadow:0 14px 28px rgba(47,47,47,.08);display:flex;flex-direction:column;gap:12px}
 .icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-weight:950;font-size:22px}
-.icon.todo{background:rgba(255,196,61,.22);color:#8a6200}
+.icon.todo{background:rgba(216,199,19,.22);color:#8a6200}
 .icon.done{background:rgba(79,111,85,.18);color:var(--green)}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start}
 .user-assessment-card p{color:var(--muted);line-height:1.45}
@@ -125,15 +211,15 @@ h1,h2,h3,h4,p{margin-top:0}
 .option-editor{display:grid;grid-template-columns:1fr 150px 90px;gap:10px;align-items:center;margin-bottom:8px}
 
 /* Assessment answering */
-.assessment-shell{position:fixed;inset:0;overflow:auto;z-index:80;padding:28px;background:radial-gradient(circle at 10% 10%,rgba(255,196,61,.18) 0 18px,transparent 19px),radial-gradient(circle at 110% 86%,rgba(255,196,61,.14) 0 190px,transparent 191px),#d8d0d0}
+.assessment-shell{position:fixed;inset:0;overflow:auto;z-index:80;padding:28px;background:radial-gradient(circle at 10% 10%,rgba(216,199,19,.18) 0 18px,transparent 19px),radial-gradient(circle at 110% 86%,rgba(216,199,19,.14) 0 190px,transparent 191px),#d8d0d0}
 .assessment-container{width:min(1060px,100%);margin:0 auto}
 .answer-brand{display:flex;justify-content:space-between;align-items:center;margin-bottom:44px}
 .progress-meta{display:flex;justify-content:space-between;align-items:center;font-weight:950;color:var(--graphite);letter-spacing:.12em;text-transform:uppercase;font-size:13px}
-.progress-meta .percent{font-family:Georgia,serif;font-size:28px;letter-spacing:0;color:var(--gold2);font-weight:400}
+.progress-meta .percent{font-family:var(--font-title);font-size:28px;letter-spacing:0;color:var(--gold2);font-weight:400}
 .progress-track{height:8px;background:rgba(111,111,111,.22);border-radius:999px;overflow:hidden;margin-top:8px}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:999px}
 .answer-title{text-align:center;margin:48px auto 28px}
-.answer-title h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:clamp(38px,5vw,68px);letter-spacing:-.045em}
+.answer-title h1{font-family:var(--font-title);font-weight:400;font-size:clamp(38px,5vw,68px);letter-spacing:-.045em}
 .answer-title p{font-size:20px;color:var(--muted)}
 .answer-list{width:min(840px,100%);margin:0 auto;display:grid;gap:16px}
 .big-option,.list-option{display:flex;align-items:center;gap:24px;background:#f8f4f4;border:1px solid var(--line);border-radius:28px;box-shadow:0 12px 26px rgba(47,47,47,.07);padding:24px;font-size:24px;font-weight:850;color:var(--text)}
@@ -142,7 +228,7 @@ h1,h2,h3,h4,p{margin-top:0}
 .list-box .list-option{border-bottom:1px solid var(--line)}
 .list-box .list-option:last-child{border-bottom:0}
 .radio{width:28px;height:28px;border:2px solid #b7adad;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
-.selected{border-color:var(--gold2)!important;box-shadow:0 16px 30px rgba(255,196,61,.16)!important}
+.selected{border-color:var(--gold2)!important;box-shadow:0 16px 30px rgba(216,199,19,.16)!important}
 .selected .radio::after{content:"";width:14px;height:14px;border-radius:50%;background:var(--gold2)}
 .answer-actions{width:min(920px,100%);margin:28px auto;display:flex;justify-content:space-between;gap:14px}
 .form-panel{width:min(940px,100%);margin:0 auto;background:#f8f4f4;border:1px solid var(--line);border-radius:28px;padding:34px;box-shadow:0 14px 28px rgba(47,47,47,.08)}
@@ -152,9 +238,9 @@ h1,h2,h3,h4,p{margin-top:0}
 .scale{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .scale button{height:54px;background:#fbf8f8;border-right:1px solid var(--line);font-weight:900}
 .scale button:last-child{border-right:0}
-.scale button.active{background:rgba(255,196,61,.22)}
+.scale button.active{background:rgba(216,199,19,.22)}
 .result-box{width:min(850px,100%);margin:0 auto;text-align:center;background:#f8f4f4;border:1px solid var(--line);border-radius:30px;padding:36px;box-shadow:var(--shadow)}
-.result-profile{display:inline-block;font-family:Georgia,serif;font-size:52px;font-weight:400;margin:8px 0 12px}
+.result-profile{display:inline-block;font-family:var(--font-title);font-size:52px;font-weight:400;margin:8px 0 12px}
 .result-bars{max-width:620px;margin:26px auto;display:grid;gap:13px;text-align:left}
 .result-row{display:grid;grid-template-columns:130px 1fr 44px;gap:10px;align-items:center}
 .footer-mark{margin:28px auto 0;display:flex;align-items:center;justify-content:center;gap:18px;color:var(--graphite);opacity:.66}
@@ -369,7 +455,7 @@ h1,h2,h3,h4,p{margin-top:0}
 
 .inline-view-btn:hover {
   border-color: var(--gold2);
-  background: rgba(255,196,61,.18);
+  background: rgba(216,199,19,.18);
 }
 
 .user-detail-modal {
@@ -479,5 +565,1489 @@ h1,h2,h3,h4,p{margin-top:0}
   .detail-grid,
   .detail-assessment-row {
     grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================
+   Tela principal / Portal
+   ========================= */
+.portal-shell,
+.eci-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 34px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(216,199,19,.16) 0 120px, transparent 121px),
+    radial-gradient(circle at 90% 78%, rgba(47,47,47,.10) 0 180px, transparent 181px),
+    linear-gradient(135deg, #eee7e7, #d8d0d0);
+}
+
+.portal-bg-mark {
+  position: absolute;
+  font-family: var(--font-title);
+  font-size: clamp(120px, 22vw, 360px);
+  color: rgba(47,47,47,.045);
+  letter-spacing: .02em;
+  inset: auto auto -40px -20px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.portal-card,
+.eci-card {
+  width: min(1120px, 100%);
+  background: rgba(245,241,241,.86);
+  border: 1px solid rgba(191,183,183,.85);
+  border-radius: 34px;
+  box-shadow: 0 28px 80px rgba(47,47,47,.18);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.portal-top,
+.eci-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 38px;
+}
+
+.portal-pedra-logo,
+.eci-pedra-logo {
+  width: 230px;
+  max-width: 45vw;
+  height: auto;
+  object-fit: contain;
+}
+
+.portal-tag {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 13px;
+  background: #f8f4f4;
+  color: var(--graphite);
+  font-weight: 900;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.portal-title {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 30px;
+}
+
+.portal-title h1,
+.eci-content h1 {
+  font-family: var(--font-title);
+  font-size: clamp(42px, 6vw, 74px);
+  letter-spacing: .005em;
+  margin-bottom: 12px;
+}
+
+.portal-title p,
+.eci-content p {
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 15px;
+}
+
+.portal-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.portal-option {
+  min-height: 270px;
+  text-align: left;
+  border-radius: 28px;
+  padding: 24px;
+  background: #f8f4f4;
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 38px rgba(47,47,47,.09);
+  color: var(--text);
+  display: grid;
+  align-content: space-between;
+  gap: 22px;
+  transition: .22s ease;
+}
+
+.portal-option:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold2);
+  box-shadow: 0 22px 48px rgba(47,47,47,.14);
+}
+
+.portal-option.eci {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(216,199,19,.20) 0 46px, transparent 47px),
+    #f8f4f4;
+}
+
+.portal-option-logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.portal-option-logo img {
+  width: 58px;
+  height: auto;
+  object-fit: contain;
+  opacity: .76;
+  filter: grayscale(1);
+}
+
+.portal-lidere {
+  font-size: 34px;
+}
+
+.eci-logo {
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.eci-logo strong,
+.eci-mark strong {
+  font-family: var(--font-title);
+  font-size: 54px;
+  color: var(--graphite);
+  line-height: .9;
+}
+
+.eci-logo span,
+.eci-mark span {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--gold2);
+  font-weight: 900;
+}
+
+.portal-option h2 {
+  font-family: var(--font-title);
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+
+.portal-option p {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.portal-enter {
+  display: inline-flex;
+  margin-top: 16px;
+  color: var(--graphite);
+  font-weight: 900;
+  border-bottom: 2px solid var(--gold2);
+  padding-bottom: 3px;
+}
+
+.portal-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 26px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.eci-card {
+  width: min(980px, 100%);
+}
+
+.eci-content {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 20px 0 8px;
+}
+
+.eci-mark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 20px;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  padding: 20px 24px;
+  background: #f8f4f4;
+  box-shadow: 0 12px 28px rgba(47,47,47,.08);
+}
+
+.eci-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 14px;
+  margin: 28px 0;
+}
+
+.eci-preview-grid div {
+  background: #f8f4f4;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 16px;
+  text-align: left;
+}
+
+.eci-preview-grid b,
+.eci-preview-grid span {
+  display: block;
+}
+
+.eci-preview-grid span {
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.45;
+}
+
+.login-mini-actions {
+  margin-bottom: 18px;
+}
+
+@media(max-width: 900px) {
+  .portal-options,
+  .eci-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portal-card,
+  .eci-card {
+    padding: 22px;
+  }
+
+  .portal-top,
+  .eci-header,
+  .portal-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .portal-pedra-logo,
+  .eci-pedra-logo {
+    width: 180px;
+  }
+}
+
+
+/* v18 - botões da home em coluna */
+.portal-options {
+  grid-template-columns: 1fr !important;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.portal-option {
+  min-height: 190px;
+}
+
+.portal-option.somos-pedra {
+  min-height: 150px;
+  background:
+    linear-gradient(135deg, rgba(47,47,47,.08), rgba(216,199,19,.10)),
+    #f8f4f4;
+}
+
+.somos-pedra-logo {
+  width: 210px !important;
+  max-width: 100%;
+  height: auto;
+  opacity: .86 !important;
+  filter: grayscale(1) contrast(.95) !important;
+}
+
+.portal-option.somos-pedra h2 {
+  margin-top: 4px;
+}
+
+@media(max-width: 900px) {
+  .portal-option {
+    min-height: auto;
+  }
+
+  .somos-pedra-logo {
+    width: 170px !important;
+  }
+}
+
+
+/* v19 - páginas separadas */
+.portal-link,
+.page-link-button {
+  text-decoration: none;
+}
+
+.portal-link {
+  display: grid;
+}
+
+.eci-card-logo-small {
+  width: 190px !important;
+  height: auto;
+  border-radius: 18px;
+  opacity: 1 !important;
+  filter: none !important;
+  background: #f8f4f4;
+  border: 1px solid var(--line);
+}
+
+.eci-main-logo {
+  width: min(560px, 100%);
+  height: auto;
+  display: block;
+  margin: 0 auto 22px;
+  border-radius: 28px;
+  box-shadow: 0 16px 38px rgba(47,47,47,.10);
+}
+
+.eci-content .portal-tag {
+  margin-bottom: 18px;
+}
+
+@media(max-width:900px) {
+  .eci-card-logo-small {
+    width: 160px !important;
+  }
+}
+
+
+/* v20 - logos reais em PNG na home */
+.lidere-option-logo {
+  align-items: center;
+}
+
+.lidere-card-logo {
+  width: 210px !important;
+  max-width: 75%;
+  height: auto;
+  object-fit: contain;
+  opacity: .92 !important;
+  filter: grayscale(1) contrast(.95) !important;
+}
+
+.eci-card-logo-small {
+  width: 230px !important;
+  max-width: 80%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 18px;
+  opacity: 1 !important;
+  filter: none !important;
+  background: #f8f4f4;
+  border: 1px solid var(--line);
+}
+
+.eci-main-logo {
+  width: min(580px, 100%);
+  max-height: 310px;
+  object-fit: contain;
+  padding: 18px;
+  background: #f8f4f4;
+}
+
+@media(max-width:900px) {
+  .lidere-card-logo,
+  .eci-card-logo-small {
+    width: 170px !important;
+  }
+}
+
+
+/* v21 - Home Somos Pedra apenas com logos nos botões */
+.logo-only-options {
+  grid-template-columns: 1fr !important;
+  max-width: 760px;
+  margin: 0 auto;
+  gap: 22px;
+}
+
+.logo-only-card {
+  min-height: 230px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 34px !important;
+  text-align: center !important;
+}
+
+.logo-only-card:hover {
+  transform: translateY(-3px) scale(1.005);
+}
+
+.home-logo-only {
+  display: block;
+  max-width: 78%;
+  max-height: 150px;
+  object-fit: contain;
+}
+
+.lidere-home-logo {
+  width: min(380px, 80%);
+  filter: grayscale(1) contrast(.92);
+  opacity: .88;
+}
+
+.eci-home-logo {
+  width: min(330px, 76%);
+  filter: none;
+  opacity: .95;
+}
+
+.logo-only-card::after {
+  content: "";
+  width: 92px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--gold2);
+  opacity: .9;
+  margin-top: 18px;
+}
+
+@media(max-width:900px) {
+  .logo-only-card {
+    min-height: 180px !important;
+  }
+
+  .home-logo-only {
+    max-height: 115px;
+  }
+}
+
+
+/* v22 - Logo Somos Pedra na home */
+.somos-title {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+
+.somos-logo-title {
+  display: block;
+  width: min(420px, 82vw);
+  max-height: 170px;
+  object-fit: contain;
+  filter: grayscale(1) contrast(.95);
+  opacity: .94;
+}
+
+.somos-title p {
+  max-width: 760px;
+}
+
+@media(max-width:900px) {
+  .somos-logo-title {
+    width: min(310px, 82vw);
+    max-height: 130px;
+  }
+}
+
+
+/* v23 - botões menores e logos coloridos na home */
+.logo-only-options {
+  max-width: 620px !important;
+  gap: 18px !important;
+}
+
+.logo-only-card {
+  min-height: 170px !important;
+  padding: 24px !important;
+}
+
+.home-logo-only {
+  max-width: 70% !important;
+  max-height: 110px !important;
+}
+
+.lidere-home-logo {
+  width: min(300px, 70%) !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+.eci-home-logo {
+  width: min(265px, 66%) !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+.somos-logo-title {
+  width: min(340px, 72vw) !important;
+  max-height: 130px !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+.logo-only-card::after {
+  width: 72px !important;
+  margin-top: 14px !important;
+}
+
+@media(max-width:900px) {
+  .logo-only-options {
+    max-width: 100% !important;
+  }
+
+  .logo-only-card {
+    min-height: 145px !important;
+    padding: 20px !important;
+  }
+
+  .home-logo-only {
+    max-height: 90px !important;
+  }
+
+  .somos-logo-title {
+    width: min(270px, 78vw) !important;
+    max-height: 105px !important;
+  }
+}
+
+
+/* v24 - fundo externo mais escuro e botões menores/centralizados */
+.portal-shell {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(185,170,16,.22) 0 130px, transparent 131px),
+    radial-gradient(circle at 92% 88%, rgba(47,47,47,.16) 0 190px, transparent 191px),
+    linear-gradient(135deg, #c9c2c2 0%, #bcb5b5 48%, #cfc9c9 100%) !important;
+}
+
+.portal-card {
+  width: min(1240px, 92%) !important;
+  background: rgba(242, 238, 238, .94) !important;
+  border: 1px solid rgba(168,158,158,.75) !important;
+  box-shadow: 0 30px 90px rgba(47,47,47,.18) !important;
+}
+
+.logo-only-options {
+  max-width: 520px !important;
+  margin: 0 auto !important;
+  gap: 16px !important;
+  justify-items: center !important;
+}
+
+.logo-only-card {
+  width: 100%;
+  max-width: 500px;
+  min-height: 145px !important;
+  padding: 20px !important;
+  border-radius: 26px !important;
+  box-shadow: 0 14px 34px rgba(47,47,47,.08) !important;
+}
+
+.home-logo-only {
+  max-width: 62% !important;
+  max-height: 92px !important;
+}
+
+.lidere-home-logo {
+  width: min(250px, 64%) !important;
+}
+
+.eci-home-logo {
+  width: min(220px, 58%) !important;
+}
+
+.logo-only-card::after {
+  width: 62px !important;
+  margin-top: 12px !important;
+}
+
+.portal-title {
+  margin: 0 auto 24px !important;
+}
+
+.somos-logo-title {
+  width: min(320px, 70vw) !important;
+  max-height: 118px !important;
+}
+
+.portal-title p {
+  max-width: 860px !important;
+  font-size: 14px !important;
+}
+
+.portal-footer {
+  margin-top: 22px !important;
+}
+
+@media(max-width:900px) {
+  .portal-shell {
+    padding: 20px !important;
+  }
+
+  .portal-card {
+    width: min(96%, 100%) !important;
+    padding: 22px !important;
+  }
+
+  .logo-only-options {
+    max-width: 100% !important;
+    gap: 14px !important;
+  }
+
+  .logo-only-card {
+    max-width: 420px !important;
+    min-height: 125px !important;
+    padding: 18px !important;
+  }
+
+  .home-logo-only {
+    max-height: 78px !important;
+  }
+
+  .somos-logo-title {
+    width: min(260px, 78vw) !important;
+    max-height: 96px !important;
+  }
+}
+
+
+/* v25 - amarelo institucional atualizado */
+:root {
+  --gold: #d8c713 !important;
+  --gold2: #b9aa10 !important;
+  --gold-2: #d8c713 !important;
+}
+
+.logo-only-card::after,
+.portal-enter,
+.admin-tabs button.active,
+.fill,
+.progress-fill,
+.mini-fill {
+  background: #d8c713 !important;
+  border-color: #d8c713 !important;
+}
+
+.btn.gold {
+  background: linear-gradient(135deg, #d8c713, #b9aa10) !important;
+  color: #2f2f2f !important;
+}
+
+.portal-tag,
+.inline-view-btn:hover,
+.organic-action:hover,
+.portal-option:hover,
+.logo-only-card:hover {
+  border-color: #d8c713 !important;
+}
+
+.assessment-icon.todo,
+.badge.warning {
+  background: rgba(216,199,19,.22) !important;
+  color: #6f6700 !important;
+}
+
+.portal-shell {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(216,199,19,.22) 0 130px, transparent 131px),
+    radial-gradient(circle at 92% 88%, rgba(47,47,47,.16) 0 190px, transparent 191px),
+    linear-gradient(135deg, #c9c2c2 0%, #bcb5b5 48%, #cfc9c9 100%) !important;
+}
+
+
+/* v26 - remove etiqueta Somos Pedra do topo da home */
+.portal-top {
+  justify-content: flex-start !important;
+}
+
+.portal-top .portal-tag {
+  display: none !important;
+}
+
+
+/* v27 - tela do LIDERE pronta */
+.login-shell {
+  min-height: 100vh;
+}
+
+.login-brand.ready-screen {
+  display: flex !important;
+  align-items: stretch;
+  padding: 48px 44px 52px !important;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(216,199,19,.10) 0 110px, transparent 111px),
+    linear-gradient(135deg, #343434 0%, #4d4d4d 55%, #767676 100%) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-brand.ready-screen::after {
+  content: "";
+  position: absolute;
+  right: -55px;
+  bottom: -65px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.05);
+}
+
+.login-brand-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.login-brand-top {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.login-lidere-logo {
+  width: min(310px, 74%);
+  max-height: 115px;
+  object-fit: contain;
+  display: block;
+}
+
+.login-brand-copy {
+  max-width: 660px;
+}
+
+.login-brand-copy h1 {
+  color: #fff !important;
+  font-size: clamp(42px, 5vw, 70px) !important;
+  line-height: .96 !important;
+  margin: 0 0 22px !important;
+}
+
+.login-brand-copy p {
+  color: rgba(255,255,255,.94) !important;
+  font-size: 17px !important;
+  line-height: 1.58 !important;
+  max-width: 700px;
+  margin: 0;
+}
+
+.login-brand-bottom {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.login-pedra-logo-bottom {
+  width: min(310px, 72%);
+  height: auto;
+  object-fit: contain;
+  filter: brightness(1.06);
+}
+
+.login-panel {
+  background: #f4efef !important;
+}
+
+.login-card {
+  border-radius: 30px !important;
+  box-shadow: 0 18px 42px rgba(47,47,47,.08) !important;
+}
+
+.login-mini-actions {
+  margin-bottom: 20px !important;
+}
+
+.login-back-btn {
+  background: linear-gradient(135deg, #d8c713, #b9aa10) !important;
+  color: #2f2f2f !important;
+  border: none !important;
+}
+
+.login-back-btn:hover {
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+}
+
+@media(max-width: 980px) {
+  .login-brand.ready-screen {
+    padding: 30px 24px 34px !important;
+  }
+
+  .login-lidere-logo {
+    width: min(230px, 76%);
+    max-height: 88px;
+  }
+
+  .login-brand-copy h1 {
+    font-size: clamp(32px, 9vw, 52px) !important;
+  }
+
+  .login-brand-copy p {
+    font-size: 15px !important;
+  }
+
+  .login-pedra-logo-bottom {
+    width: min(230px, 68%);
+  }
+}
+
+
+/* v28 - inversão de cores e limpeza visual do LIDERE */
+.login-shell {
+  min-height: 100vh;
+  grid-template-columns: 1.05fr .95fr !important;
+}
+
+.login-brand.ready-screen {
+  background: #f4efef !important;
+  color: #2f2f2f !important;
+  padding: 42px 40px 46px !important;
+}
+
+.login-brand.ready-screen::after {
+  display: none !important;
+  content: none !important;
+}
+
+.login-brand-content {
+  gap: 22px !important;
+}
+
+.login-lidere-logo {
+  width: min(300px, 70%) !important;
+  max-height: 100px !important;
+}
+
+.login-brand-copy {
+  max-width: 560px !important;
+}
+
+.login-brand-copy h1 {
+  color: #2f2f2f !important;
+  font-size: clamp(34px, 4.1vw, 56px) !important;
+  line-height: 1.02 !important;
+  margin: 0 0 16px !important;
+}
+
+.login-brand-copy p {
+  color: #4a4a4a !important;
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  max-width: 560px !important;
+}
+
+.login-pedra-logo-bottom {
+  width: min(280px, 66%) !important;
+  filter: none !important;
+}
+
+.login-panel {
+  background: linear-gradient(135deg, #343434 0%, #474747 55%, #5b5b5b 100%) !important;
+  position: relative;
+}
+
+.login-panel::before,
+.login-panel::after {
+  display: none !important;
+  content: none !important;
+}
+
+.login-card {
+  width: min(470px, 100%) !important;
+  background: #f4efef !important;
+  border-radius: 30px !important;
+  box-shadow: 0 20px 42px rgba(0,0,0,.20) !important;
+}
+
+.login-back-btn {
+  background: linear-gradient(135deg, #d8c713, #b9aa10) !important;
+  color: #2f2f2f !important;
+}
+
+.quick {
+  background: #eee7e7 !important;
+}
+
+.quick button {
+  background: #fbf8f8 !important;
+}
+
+@media(max-width: 980px) {
+  .login-shell {
+    grid-template-columns: 1fr !important;
+  }
+
+  .login-brand.ready-screen {
+    padding: 24px 20px 24px !important;
+  }
+
+  .login-lidere-logo {
+    width: min(210px, 72%) !important;
+    max-height: 74px !important;
+  }
+
+  .login-brand-copy {
+    max-width: 100% !important;
+  }
+
+  .login-brand-copy h1 {
+    font-size: clamp(26px, 8vw, 38px) !important;
+    line-height: 1.05 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .login-brand-copy p {
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+    max-width: 100% !important;
+  }
+
+  .login-pedra-logo-bottom {
+    width: min(190px, 60%) !important;
+  }
+
+  .login-panel {
+    padding: 20px !important;
+  }
+
+  .login-card {
+    width: min(100%, 420px) !important;
+    padding: 22px !important;
+  }
+}
+
+
+/* v29 - somente amarelo e sem degradê */
+:root {
+  --gold: #d8c713 !important;
+  --gold2: #d8c713 !important;
+  --gold-2: #d8c713 !important;
+}
+
+/* remover gradientes dos principais blocos */
+.portal-shell,
+.eci-shell {
+  background: #bfb7b7 !important;
+}
+
+.portal-card,
+.eci-card {
+  background: #f4efef !important;
+}
+
+.portal-option,
+.portal-option.eci,
+.portal-option.somos-pedra,
+.logo-only-card {
+  background: #f8f4f4 !important;
+}
+
+.login-brand.ready-screen {
+  background: #f4efef !important;
+}
+
+.login-panel {
+  background: #4d4d4d !important;
+}
+
+.sidebar {
+  background: #2f2f2f !important;
+}
+
+/* amarelo sólido, sem dourado e sem degradê */
+.btn.gold,
+.login-back-btn,
+button.btn.gold,
+a.btn.gold {
+  background: #d8c713 !important;
+  color: #2f2f2f !important;
+  border: none !important;
+  background-image: none !important;
+}
+
+.logo-only-card::after,
+.portal-enter,
+.fill,
+.progress-fill,
+.mini-fill {
+  background: #d8c713 !important;
+  border-color: #d8c713 !important;
+  background-image: none !important;
+}
+
+.portal-tag,
+.inline-view-btn:hover,
+.organic-action:hover,
+.portal-option:hover,
+.logo-only-card:hover,
+.admin-tabs button.active {
+  border-color: #d8c713 !important;
+  background-image: none !important;
+}
+
+.assessment-icon.todo,
+.badge.warning {
+  background: rgba(216,199,19,.18) !important;
+  color: #5f5800 !important;
+}
+
+/* neutraliza gradientes residuais */
+[class*="gold"] {
+  background-image: none !important;
+}
+
+/* remove detalhes circulares/blur com fundo dourado */
+.portal-bg-mark {
+  color: rgba(47,47,47,.03) !important;
+}
+
+
+/* v30 - LIDERE sem rolagem e logo final no mobile */
+.login-shell {
+  min-height: 100dvh !important;
+  height: 100dvh !important;
+  overflow: hidden !important;
+  grid-template-columns: 1.02fr .98fr !important;
+}
+
+.login-brand.ready-screen {
+  padding: 28px 34px 30px !important;
+}
+
+.login-brand-content {
+  gap: 16px !important;
+}
+
+.login-lidere-logo {
+  width: min(280px, 66%) !important;
+  max-height: 88px !important;
+}
+
+.login-brand-copy {
+  max-width: 520px !important;
+}
+
+.login-brand-copy h1 {
+  font-size: clamp(28px, 3.9vw, 48px) !important;
+  line-height: 1.02 !important;
+  margin: 0 0 10px !important;
+}
+
+.login-brand-copy p {
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  max-width: 500px !important;
+}
+
+.login-pedra-logo-bottom {
+  width: min(250px, 58%) !important;
+}
+
+.login-panel {
+  padding: 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.login-card {
+  width: min(430px, 100%) !important;
+  padding: 20px !important;
+  border-radius: 26px !important;
+}
+
+.login-card h2 {
+  margin: 2px 0 16px !important;
+  font-size: 28px !important;
+}
+
+.form-group {
+  margin-bottom: 12px !important;
+}
+
+.form-group label {
+  margin-bottom: 6px !important;
+}
+
+.form-group input {
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+}
+
+.btn.gold {
+  padding: 12px 16px !important;
+  font-size: 15px !important;
+  margin-top: 4px !important;
+}
+
+.quick {
+  margin-top: 12px !important;
+  padding: 10px !important;
+  border-radius: 16px !important;
+}
+
+.quick > b {
+  display: block;
+  margin-bottom: 6px !important;
+  font-size: 12px !important;
+}
+
+.quick button {
+  margin-top: 6px !important;
+  padding: 8px 12px !important;
+  border-radius: 12px !important;
+  line-height: 1.25 !important;
+}
+
+.quick button b {
+  font-size: 11px !important;
+}
+
+.quick button small {
+  font-size: 10px !important;
+}
+
+.login-mobile-footer-logo {
+  display: none;
+}
+
+.login-mobile-footer-logo img {
+  width: 160px;
+  max-width: 70%;
+  height: auto;
+  display: block;
+  margin: 16px auto 0;
+}
+
+@media(max-width: 980px) {
+  .login-shell {
+    min-height: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .login-brand.ready-screen {
+    padding: 18px 18px 14px !important;
+  }
+
+  .login-lidere-logo {
+    width: min(190px, 64%) !important;
+    max-height: 62px !important;
+  }
+
+  .login-brand-copy h1 {
+    font-size: clamp(22px, 7vw, 32px) !important;
+    line-height: 1.05 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .login-brand-copy p {
+    font-size: 12px !important;
+    line-height: 1.38 !important;
+  }
+
+  .login-brand-bottom {
+    display: none !important;
+  }
+
+  .login-panel {
+    padding: 12px 14px 18px !important;
+  }
+
+  .login-card {
+    width: min(100%, 380px) !important;
+    padding: 16px !important;
+  }
+
+  .login-card h2 {
+    font-size: 24px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .login-mini-actions {
+    margin-bottom: 12px !important;
+  }
+
+  .form-group {
+    margin-bottom: 10px !important;
+  }
+
+  .form-group input {
+    padding: 11px 14px !important;
+    font-size: 13px !important;
+  }
+
+  .btn.gold {
+    padding: 11px 14px !important;
+    font-size: 14px !important;
+  }
+
+  .quick {
+    margin-top: 10px !important;
+    padding: 8px !important;
+  }
+
+  .quick > b {
+    font-size: 11px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .quick button {
+    padding: 7px 10px !important;
+    margin-top: 5px !important;
+  }
+
+  .quick button b {
+    font-size: 10px !important;
+  }
+
+  .quick button small {
+    font-size: 9px !important;
+  }
+
+  .login-mobile-footer-logo {
+    display: block !important;
+  }
+}
+
+
+/* v31 - acessos de demonstração compactos */
+.login-panel {
+  padding: 14px !important;
+}
+
+.login-card {
+  width: min(420px, 100%) !important;
+  padding: 18px !important;
+}
+
+.login-card h2 {
+  font-size: 24px !important;
+  margin: 0 0 12px !important;
+}
+
+.form-group {
+  margin-bottom: 10px !important;
+}
+
+.form-group label {
+  margin-bottom: 4px !important;
+  font-size: 13px !important;
+}
+
+.form-group input {
+  padding: 11px 14px !important;
+  font-size: 13px !important;
+}
+
+.btn.gold {
+  padding: 11px 14px !important;
+  font-size: 14px !important;
+  margin-top: 2px !important;
+}
+
+.compact-quick {
+  margin-top: 10px !important;
+  padding: 8px !important;
+  border-radius: 14px !important;
+}
+
+.compact-quick > b {
+  display: block;
+  margin-bottom: 4px !important;
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+}
+
+.quick-access-item {
+  display: block !important;
+  width: 100% !important;
+  text-align: left !important;
+  margin-top: 5px !important;
+  padding: 7px 10px !important;
+  border-radius: 11px !important;
+  line-height: 1.15 !important;
+}
+
+.quick-access-top {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.quick-access-top b {
+  font-size: 10px !important;
+  line-height: 1.1 !important;
+}
+
+.quick-access-top span {
+  font-size: 10px !important;
+  line-height: 1.1 !important;
+}
+
+.quick-access-item small {
+  display: block;
+  font-size: 9px !important;
+  line-height: 1.1 !important;
+}
+
+.login-mobile-footer-logo img {
+  width: 145px !important;
+  margin: 12px auto 0 !important;
+}
+
+@media(max-width: 980px) {
+  .login-card {
+    width: min(100%, 370px) !important;
+    padding: 14px !important;
+  }
+
+  .login-card h2 {
+    font-size: 21px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .form-group {
+    margin-bottom: 8px !important;
+  }
+
+  .form-group label {
+    font-size: 12px !important;
+  }
+
+  .form-group input {
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+  }
+
+  .btn.gold {
+    padding: 10px 12px !important;
+    font-size: 13px !important;
+  }
+
+  .compact-quick {
+    margin-top: 8px !important;
+    padding: 7px !important;
+  }
+
+  .compact-quick > b {
+    font-size: 10px !important;
+  }
+
+  .quick-access-item {
+    margin-top: 4px !important;
+    padding: 6px 8px !important;
+  }
+
+  .quick-access-top b,
+  .quick-access-top span {
+    font-size: 9px !important;
+  }
+
+  .quick-access-item small {
+    font-size: 8px !important;
+  }
+}
+
+
+/* v32 - usuário: minhas atividades e atividades realizadas */
+.completed-activities {
+  display: grid;
+  gap: 16px;
+}
+
+.completed-card {
+  background: #f8f4f4;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 18px;
+}
+
+.completed-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.completed-head h3 {
+  margin: 0 0 4px;
+}
+
+.answer-review {
+  display: grid;
+  gap: 12px;
+}
+
+.result-chip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: rgba(216,199,19,.16);
+  border: 1px solid #d8c713;
+  border-radius: 16px;
+  padding: 12px 14px;
+}
+
+.result-chip span {
+  color: var(--muted);
+  font-weight: 900;
+  font-size: 12px;
+}
+
+.result-chip b {
+  font-size: 18px;
+}
+
+.muted-chip {
+  background: #eee7e7;
+  border-color: var(--line);
+}
+
+.answer-review-list {
+  display: grid;
+  gap: 8px;
+}
+
+.answer-review-row {
+  display: grid;
+  grid-template-columns: 1fr minmax(160px, 260px);
+  gap: 10px;
+  align-items: center;
+  background: #eee7e7;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 11px 12px;
+}
+
+.answer-review-row span {
+  color: var(--muted);
+}
+
+.answer-review-row b {
+  text-align: right;
+}
+
+@media(max-width: 760px) {
+  .completed-head,
+  .answer-review-row {
+    grid-template-columns: 1fr;
+  }
+
+  .answer-review-row b {
+    text-align: left;
   }
 }
